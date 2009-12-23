@@ -4,4 +4,31 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="librarymanager.core">
 
+	<class name="Admin" table="table_user_admin">
+		<id name="login" type="java.lang.String" column="login">
+		</id>
+		<property name="password" type="java.lang.String" column="password" />
+		<property name="lastName" type="java.lang.String" column="lastName" />
+		<property name="firstName" type="java.lang.String" column="firstName" />
+		<property name="email" type="java.lang.String" column="email" />
+	</class>
+
+	<class name="Customer" table="table_user_customer">
+		<id name="login" type="java.lang.String" column="login">
+		</id>
+		<property name="password" type="java.lang.String" column="password" />
+		<property name="lastName" type="java.lang.String" column="lastName" />
+		<property name="firstName" type="java.lang.String" column="firstName" />
+		<property name="email" type="java.lang.String" column="email" />
+	</class>
+
+	<class name="LibraryWorker" table="table_user_libraryworker">
+		<id name="login" type="java.lang.String" column="login">
+		</id>
+		<property name="password"  type="java.lang.String" column="password" />
+		<property name="lastName" type="java.lang.String" column="lastName" />
+		<property name="firstName" type="java.lang.String" column="firstName" />
+		<property name="email" type="java.lang.String" column="email" />
+	</class>
+
 </hibernate-mapping>

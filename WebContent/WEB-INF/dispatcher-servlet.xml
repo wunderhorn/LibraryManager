@@ -7,4 +7,33 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
+	<bean id="handlerMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="createCustomerAccount.action">createCustomerAccountController</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		lazy-init="default" autowire="default" dependency-check="default">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix">
+			<value>/jsp/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<bean id="createCustomerAccountController" class="librarymanager.ui.CreateCustomerAccountController">
+		<property name="userManager" ref="userManager" />
+		<property name="formView" value="createCustomerAccountConfirmation" />
+		<property name="commandName" value="customer" />
+		<property name="commandClass" value="librarymanager.core.Customer" />
+	</bean>
+
 </beans>
