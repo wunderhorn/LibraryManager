@@ -92,4 +92,11 @@ public class Book {
 		this.editor = editor;
 	}
 
+	@Override
+	public String toString() {
+		return "Book characteristics: \n" + "\tISBN\t: " + getIsbn() + "\n"
+				+ "\tAuthor\t: " + getAuthor() + "\n" + "\tEditor\t:"
+				+ getEditor() + "\n";
+	}
+
 }
