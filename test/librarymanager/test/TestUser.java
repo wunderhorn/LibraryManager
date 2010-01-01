@@ -16,8 +16,6 @@ public class TestUser {
 		 UserManager userManager = (UserManager)context.getBean("userManager");
 		 
 		 Admin admin = userManager.createAdmin("Admin_login", "secret", "Chef", "Lui", "Moncul@");
-		
-		 userManager.removeUser(admin);
 		 
 		 userManager.addUser(admin);
 		 

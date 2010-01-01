@@ -17,12 +17,19 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO {
 	}
 
 	@Override
-	public void removeUser(User user) {
-		getHibernateTemplate().delete(user);
+	public void removeUser(User user) throws Exception {
+		User userToDelete = (User) getHibernateTemplate().get(User.class,
+				user.getLogin());
+		getHibernateTemplate().delete(userToDelete);
 	}
 
 	@Override
-	public User getUser(String login) {
+	public User getUser(String login) throws Exception {
 		return (User) getHibernateTemplate().get(User.class, login);
+	}
+	
+	@Override
+	public boolean exists(User user) throws Exception {
+		return getHibernateTemplate().get(User.class, user.getLogin()) != null;
 	}
 }

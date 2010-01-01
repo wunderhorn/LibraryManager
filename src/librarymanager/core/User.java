@@ -6,14 +6,27 @@ package librarymanager.core;
  */
 public abstract class User {
 
+	/** Valeur par defaut d'un champ */
 	public final String DEFAULT_FIELD = "NONE";
 
+	/** Login de l'utilisateur */
 	private String login;
+	
+	/** Mot de passe de l'utilisateur */
 	private String password;
+	
+	/** Nom de famille de l'utilisateur */
 	private String lastName;
+	
+	/** Prenom de l'utilisateur */
 	private String firstName;
+	
+	/** Adresse mail de l'utilisateur */
 	private String email;
 
+	/**
+	 * Construit un utilisateur par defaut
+	 */
 	public User() {
 		login = DEFAULT_FIELD;
 		password = DEFAULT_FIELD;
@@ -22,6 +35,20 @@ public abstract class User {
 		email = DEFAULT_FIELD;
 	}
 
+	/**
+	 * Cree un nouvel utilisateur
+	 * 
+	 * @param login
+	 * 				Login de l'utilisateur
+	 * @param password
+	 * 				Mot de passe de l'utilisateur
+	 * @param lastname
+	 * 				Nom de famille de l'utilisateur
+	 * @param firstName
+	 * 				Prenom de l'utilisateur
+	 * @param email
+	 * 				Adresse mail de l'utilisateur
+	 */
 	public User(String login, String password, String lastName,
 			String firstName, String email) {
 		this.login = login;

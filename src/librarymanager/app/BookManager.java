@@ -31,7 +31,7 @@ public interface BookManager {
 	 *             levee si le livre specifie en parametre est deja present dans
 	 *             la base de donnees
 	 */
-	public void register(Book book) throws BookAlreadyExistException;
+	public void addBook(Book book) throws BookAlreadyExistException;
 
 	/**
 	 * Supprime un livre dans la base de donnees
@@ -42,13 +42,13 @@ public interface BookManager {
 	 *             levee si le livre specifie en parametre n'a pas ete
 	 *             enregistre dans la base de donnees
 	 */
-	public void delete(Book book) throws BookNotExistException;
+	public void removeBook(Book book) throws BookNotExistException;
 
 	/**
 	 * Determine si un livre est existant ou non
 	 * 
-	 * @param isbn
-	 *            ISBN du livre recherche
+	 * @param book
+	 *            Livre recherche
 	 * @return <code>true</code> si le livre est present dans la base de
 	 *         donnees, <code>false</code> sinon
 	 */

@@ -5,6 +5,8 @@ import librarymanager.core.Admin;
 import librarymanager.core.Customer;
 import librarymanager.core.LibraryWorker;
 import librarymanager.core.User;
+import librarymanager.core.UserAlreadyExistException;
+import librarymanager.core.UserNotExistException;
 import librarymanager.dao.UserDAO;
 
 /**
@@ -35,20 +37,61 @@ public class UserManagerImpl implements UserManager {
 	}
 
 	@Override
-	public void addUser(User user) {
-		userDAO.saveUser(user);
+	public void addUser(User user) throws UserAlreadyExistException {
+		if (exists(user))
+			throw new UserAlreadyExistException("The user " + user
+					+ " already exists");
+
+		try {
+			userDAO.saveUser(user);
+		} catch (Exception exception) {
+			System.err.println("User#addUser() exception: "
+					+ exception.getMessage());
+		}
 	}
 
 	@Override
-	public void removeUser(User user) {
-		userDAO.removeUser(user);
+	public void removeUser(User user) throws UserNotExistException {
+		if (!exists(user))
+			throw new UserNotExistException("The user " + user
+					+ " does not exists");
+
+		try {
+			userDAO.removeUser(user);
+		} catch (Exception exception) {
+			System.err.println("User#removeUser() exception: "
+					+ exception.getMessage());
+		}
 	}
 
 	@Override
-	public User getUser(String login) {
-		return (User) userDAO.getUser(login);
+	public User getUser(String login) throws UserNotExistException {
+		User user = null;
+		try {
+			user = (User) userDAO.getUser(login);
+		} catch (Exception exception) {
+			System.err.println("User#getUser() exception: "
+					+ exception.getMessage());
+		}
+		
+		if (user == null)
+			throw new UserNotExistException("The user with login " + login
+					+ " does not exists");
+		else
+			return user;
 	}
 
+	@Override
+	public boolean exists(User user) {
+		try {
+			return userDAO.exists(user);
+		} catch (Exception exception) {
+			System.err.println("User#exists() exception: "
+					+ exception.getMessage());
+			return false;
+		}
+	}
+	
 	public UserDAO getUserDAO() {
 		return userDAO;
 	}

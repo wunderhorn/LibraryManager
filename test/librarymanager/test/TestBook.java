@@ -18,7 +18,7 @@ public class TestBook {
 		 boolean catched = false;
 		 if (bookManager.exists(book)) {
 			 try  {
-				 bookManager.delete(book); 
+				 bookManager.removeBook(book); 
 			 } catch (BookNotExistException bookNotExistException) {
 				 catched = true;
 			}
@@ -28,7 +28,7 @@ public class TestBook {
 		 
 		 catched = false;
 		 try {
-			 bookManager.register(book);
+			 bookManager.addBook(book);
 		 } catch(BookAlreadyExistException bookAlreadyExistException) {
 			 catched = true;
 		 }
@@ -39,7 +39,7 @@ public class TestBook {
 		 
 		 catched = false;
 		 try {
-			 bookManager.register(book);
+			 bookManager.addBook(book);
 		 } catch(BookAlreadyExistException bookAlreadyExistException) {
 			 catched = true;
 		 }

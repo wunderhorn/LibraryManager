@@ -20,12 +20,12 @@ public class BookDAOImpl extends HibernateDaoSupport implements BookDAO {
 	}
 
 	@Override
-	public void save(Book book) throws Exception {
+	public void saveBook(Book book) throws Exception {
 		getHibernateTemplate().save(book);
 	}
 
 	@Override
-	public void delete(Book book) throws Exception {
+	public void removeBook(Book book) throws Exception {
 		Book bookToDelete = (Book) getHibernateTemplate().get(Book.class,
 				book.getIsbn());
 		getHibernateTemplate().delete(bookToDelete);

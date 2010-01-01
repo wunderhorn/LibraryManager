@@ -75,7 +75,7 @@ public class RegisterBookController extends SimpleFormController {
 			HttpServletResponse response, Object command, BindException errors)
 			throws Exception {
 		Book book = (Book) command;
-		bookManager.register(book);
+		bookManager.addBook(book);
 
 		return this.showForm(request, response, errors);
 	}

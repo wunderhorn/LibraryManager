@@ -1,7 +1,7 @@
 package librarymanager.core;
 
 /**
- * Exception pour un livre qui n'exsite pas
+ * Exception pour un livre qui n'existe pas
  */
 @SuppressWarnings("serial")
 public class BookNotExistException extends Exception {

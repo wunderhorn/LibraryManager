@@ -40,29 +40,29 @@ public class BookManagerImpl implements BookManager {
 	}
 
 	@Override
-	public void delete(Book book) throws BookNotExistException {
+	public void removeBook(Book book) throws BookNotExistException {
 		if (!exists(book))
 			throw new BookNotExistException("The book " + book
 					+ " does not exists");
 
 		try {
-			bookDAO.delete(book);
+			bookDAO.removeBook(book);
 		} catch (Exception exception) {
-			System.err.println("Book#delete() exeception: "
+			System.err.println("Book#removeBook() exeception: "
 					+ exception.getMessage());
 		}
 	}
 
 	@Override
-	public void register(Book book) throws BookAlreadyExistException {
+	public void addBook(Book book) throws BookAlreadyExistException {
 		if (exists(book))
 			throw new BookAlreadyExistException("The book " + book
 					+ " already exists");
 
 		try {
-			bookDAO.save(book);
+			bookDAO.saveBook(book);
 		} catch (Exception exception) {
-			System.err.println("Book#register() exeception: "
+			System.err.println("Book#addBook() exeception: "
 					+ exception.getMessage());
 		}
 	}
