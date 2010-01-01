@@ -7,10 +7,15 @@ import librarymanager.core.LibraryWorker;
 import librarymanager.core.User;
 import librarymanager.dao.UserDAO;
 
+/**
+ * 
+ * Classe de gestion des utilisateurs
+ * 
+ */
 public class UserManagerImpl implements UserManager {
 
 	private UserDAO userDAO;
-	
+
 	@Override
 	public Admin createAdmin(String login, String password, String lastName,
 			String firstName, String email) {
@@ -34,6 +39,16 @@ public class UserManagerImpl implements UserManager {
 		userDAO.saveUser(user);
 	}
 
+	@Override
+	public void removeUser(User user) {
+		userDAO.removeUser(user);
+	}
+
+	@Override
+	public User getUser(String login) {
+		return (User) userDAO.getUser(login);
+	}
+
 	public UserDAO getUserDAO() {
 		return userDAO;
 	}
@@ -41,6 +56,4 @@ public class UserManagerImpl implements UserManager {
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
-
-
 }
