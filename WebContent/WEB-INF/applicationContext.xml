@@ -12,6 +12,10 @@
 		</property>
 	</bean>
 
+	<bean id="bookManager" class="librarymanager.app.impl.BookManagerImpl">
+		<property name="bookDAO" ref="bookDAO" />
+	</bean>
+
 	<bean id="userDAO" class="librarymanager.dao.impl.UserDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
