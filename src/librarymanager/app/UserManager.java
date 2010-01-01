@@ -52,4 +52,8 @@ public interface UserManager {
 			String lastName, String firstName, String email);
 	
 	public void addUser(User user);
+	
+	public void removeUser(User user);
+	
+	public User getUser(String login);
 }
