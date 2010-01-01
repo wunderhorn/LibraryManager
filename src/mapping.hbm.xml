@@ -25,4 +25,10 @@
 		</joined-subclass>
 	</class>
 
+	<class name="Book" table="table_book">
+		<id name="isbn" type="java.lang.String" column="isbn" />
+		<property name="author" type="java.lang.String" column="author" />
+		<property name="editor" type="java.lang.String" column="editor" />
+	</class>
+
 </hibernate-mapping>

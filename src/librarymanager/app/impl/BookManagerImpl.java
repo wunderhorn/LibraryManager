@@ -3,6 +3,7 @@ package librarymanager.app.impl;
 import librarymanager.app.BookManager;
 import librarymanager.core.Book;
 import librarymanager.core.BookAlreadyExistException;
+import librarymanager.core.BookNotExistException;
 import librarymanager.dao.BookDAO;
 
 /**
@@ -16,9 +17,40 @@ public class BookManagerImpl implements BookManager {
 	public BookManagerImpl() {
 	}
 
+	/**
+	 * @return Le {@link BookDAO}
+	 */
+	public BookDAO getBookDAO() {
+		return bookDAO;
+	}
+
+	/**
+	 * Change le {@link BookDAO}
+	 * 
+	 * @param bookDAO
+	 *            Le nouveau {@link BookDAO}
+	 */
+	public void setBookDAO(BookDAO bookDAO) {
+		this.bookDAO = bookDAO;
+	}
+
 	@Override
 	public Book createBook(String isbn, String author, String editor) {
 		return new Book(isbn, author, editor);
+	}
+
+	@Override
+	public void delete(Book book) throws BookNotExistException {
+		if (!exists(book))
+			throw new BookNotExistException("The book " + book
+					+ " does not exists");
+
+		try {
+			bookDAO.delete(book);
+		} catch (Exception exception) {
+			System.err.println("Book#delete() exeception: "
+					+ exception.getMessage());
+		}
 	}
 
 	@Override

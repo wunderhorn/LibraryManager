@@ -2,6 +2,7 @@ package librarymanager.app;
 
 import librarymanager.core.Book;
 import librarymanager.core.BookAlreadyExistException;
+import librarymanager.core.BookNotExistException;
 
 /**
  * Interface de gestion des livres
@@ -31,6 +32,17 @@ public interface BookManager {
 	 *             la base de donnees
 	 */
 	public void register(Book book) throws BookAlreadyExistException;
+
+	/**
+	 * Supprime un livre dans la base de donnees
+	 * 
+	 * @param book
+	 *            Le livre specifique a supprimer
+	 * @throws BookNotExistException
+	 *             levee si le livre specifie en parametre n'a pas ete
+	 *             enregistre dans la base de donnees
+	 */
+	public void delete(Book book) throws BookNotExistException;
 
 	/**
 	 * Determine si un livre est existant ou non

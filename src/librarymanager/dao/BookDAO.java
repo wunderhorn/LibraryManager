@@ -20,6 +20,17 @@ public interface BookDAO {
 	public void save(Book book) throws Exception;
 
 	/**
+	 * Supprime un livre de la base de donnees
+	 * 
+	 * @param book
+	 *            Le livre a supprimer
+	 * @throws Exception
+	 *             Levee si une erreur de communication avec la base de donnees
+	 *             survient
+	 */
+	public void delete(Book book) throws Exception;
+
+	/**
 	 * Verifie la presence d'un livre dans la base de donnees
 	 * 
 	 * @param book

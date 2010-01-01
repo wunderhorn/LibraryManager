@@ -6,12 +6,12 @@ import librarymanager.core.User;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class Test {
+public class TestUser {
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception {
-		 ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		 ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContextUser.xml");
 	
 		 UserManager userManager = (UserManager)context.getBean("userManager");
 		 
