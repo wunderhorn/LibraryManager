@@ -4,7 +4,7 @@
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="librarymanager.core">
 
-	<class name="User" table="table_user">
+	<class name="User" table="table_user" lazy="false">
 		<id name="login" type="java.lang.String" column="login">
 		</id>
 		<property name="password" type="java.lang.String" column="password" />
@@ -12,23 +12,55 @@
 		<property name="firstName" type="java.lang.String" column="firstName" />
 		<property name="email" type="java.lang.String" column="email" />
 
-		<joined-subclass name="Admin" table="table_user_admin">
+		<joined-subclass name="Admin" table="table_user_admin"
+			lazy="false">
 			<key column="login" />
 		</joined-subclass>
 
-		<joined-subclass name="Customer" table="table_user_customer">
+		<joined-subclass name="Customer" table="table_user_customer"
+			lazy="false">
 			<key column="login" />
 		</joined-subclass>
 
-		<joined-subclass name="LibraryWorker" table="table_user_libraryworker">
+		<joined-subclass name="LibraryWorker" table="table_user_libraryworker"
+			lazy="false">
 			<key column="login" />
 		</joined-subclass>
 	</class>
 
-	<class name="Book" table="table_book">
+	<class name="Book" table="table_book" lazy="false">
 		<id name="isbn" type="java.lang.String" column="isbn" />
 		<property name="author" type="java.lang.String" column="author" />
 		<property name="editor" type="java.lang.String" column="editor" />
+
+	</class>
+
+	<class name="Stock" table="table_stock" lazy="false">
+
+		<composite-id>
+			<key-many-to-one name="book" class="Book">
+				<column name="isbn"></column>
+			</key-many-to-one>
+		</composite-id>
+
+		<property name="totalStock" type="java.lang.Integer" column="totalStock" />
+		<property name="remainingStock" type="java.lang.Integer"
+			column="remainingStock" />
+	</class>
+
+	<class name="Loan" table="table_loan" lazy="false">
+
+		<composite-id>
+			<key-many-to-one name="book" class="Book">
+				<column name="isbn"></column>
+			</key-many-to-one>
+			<key-many-to-one name="user" class="User">
+				<column name="login"></column>
+			</key-many-to-one>
+		</composite-id>
+
+		<property name="startDate" type="java.util.Date" column="startDate" />
+		<property name="endDate" type="java.util.Date" column="endDate" />
 	</class>
 
 </hibernate-mapping>

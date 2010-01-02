@@ -98,5 +98,4 @@ public class Book {
 				+ "\tAuthor\t: " + getAuthor() + "\n" + "\tEditor\t:"
 				+ getEditor() + "\n";
 	}
-
 }

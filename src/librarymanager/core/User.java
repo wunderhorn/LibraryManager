@@ -11,16 +11,16 @@ public abstract class User {
 
 	/** Login de l'utilisateur */
 	private String login;
-	
+
 	/** Mot de passe de l'utilisateur */
 	private String password;
-	
+
 	/** Nom de famille de l'utilisateur */
 	private String lastName;
-	
+
 	/** Prenom de l'utilisateur */
 	private String firstName;
-	
+
 	/** Adresse mail de l'utilisateur */
 	private String email;
 
@@ -39,15 +39,15 @@ public abstract class User {
 	 * Cree un nouvel utilisateur
 	 * 
 	 * @param login
-	 * 				Login de l'utilisateur
+	 *            Login de l'utilisateur
 	 * @param password
-	 * 				Mot de passe de l'utilisateur
+	 *            Mot de passe de l'utilisateur
 	 * @param lastname
-	 * 				Nom de famille de l'utilisateur
+	 *            Nom de famille de l'utilisateur
 	 * @param firstName
-	 * 				Prenom de l'utilisateur
+	 *            Prenom de l'utilisateur
 	 * @param email
-	 * 				Adresse mail de l'utilisateur
+	 *            Adresse mail de l'utilisateur
 	 */
 	public User(String login, String password, String lastName,
 			String firstName, String email) {
@@ -58,44 +58,97 @@ public abstract class User {
 		this.email = email;
 	}
 
+	/**
+	 * @return Le login
+	 */
 	public String getLogin() {
 		return login;
 	}
 
+	/**
+	 * Modifie le login
+	 * 
+	 * @param login
+	 *            Le nouveau login
+	 */
 	public void setLogin(String login) {
 		this.login = login;
 	}
 
+	/**
+	 * @return Le mot de passe
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * Modifie le password
+	 * 
+	 * @param password
+	 *            Le nouveau password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	/**
+	 * @return Le nom de famille
+	 */
 	public String getLastName() {
 		return lastName;
 	}
 
+	/**
+	 * Modifie le nom de famille
+	 * 
+	 * @param lastName
+	 *            Le nouveau nom de famille
+	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
+	/**
+	 * @return Le prenom
+	 */
 	public String getFirstName() {
 		return firstName;
 	}
 
+	/**
+	 * Modifie le prenom
+	 * 
+	 * @param firstName
+	 *            Le nouveau prenom
+	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
+	/**
+	 * @return Le mail
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * Modifie l'adresse mail
+	 * 
+	 * @param email
+	 *            La nouvelle adresse mail
+	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "User characteristics: \n" + "\tLogin\t: " + getLogin() + "\n"
+				+ "\tPassword\t: " + getPassword() + "\n" + "\tLastName\t: "
+				+ getLastName() + "\n" + "\tFirstName\t:" + getFirstName()
+				+ "\n" + "\tEmail\t: " + getEmail() + "\n";
 	}
 
 }

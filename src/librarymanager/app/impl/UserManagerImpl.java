@@ -18,6 +18,26 @@ public class UserManagerImpl implements UserManager {
 
 	private UserDAO userDAO;
 
+	public UserManagerImpl() {
+	}
+	
+	/**
+	 * @return Le {@link UserDAO}
+	 */
+	public UserDAO getUserDAO() {
+		return userDAO;
+	}
+
+	/**
+	 * Change le {@link UserDAO}
+	 * 
+	 * @param userDAO
+	 *            Le nouveau {@link UserDAO}
+	 */
+	public void setUserDAO(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
+	
 	@Override
 	public Admin createAdmin(String login, String password, String lastName,
 			String firstName, String email) {
@@ -90,13 +110,5 @@ public class UserManagerImpl implements UserManager {
 					+ exception.getMessage());
 			return false;
 		}
-	}
-	
-	public UserDAO getUserDAO() {
-		return userDAO;
-	}
-
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
 	}
 }
