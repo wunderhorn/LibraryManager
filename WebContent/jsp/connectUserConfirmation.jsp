@@ -7,34 +7,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
 
-<title>Search a new account</title>
+<title>Connect user - Confirmation</title>
 </head>
 <body>
-
-<form:form method="post" name="searchUserAccountForm" action="/LibraryManager/searchUserAccount.action">
-	<table>
+<h3>Your are connected !</h3>
+<table>
 		<tr>
 			<td>Login</td>
-			<td><input type="text" name="login" /></td>
+			<td>${login}</td>
 		</tr>
 		<tr>
 			<td>LastName</td>
-			<td><input type="text" name="lastName" /></td>
+			<td>${lastName}</td>
 		</tr>
 		<tr>
 			<td>FirstName</td>
-			<td><input type="text" name="firstName" /></td>
+			<td>${firstName}</td>
 		</tr>
 		<tr>
 			<td>Email</td>
-			<td><input type="text" name="email" /></td>
-		</tr>
-		<tr>
-			<td><input type="submit" value="search users" /></td>
+			<td>${email}</td>
 		</tr>
 	</table>
-
-</form:form>
-
 </body>
 </html>

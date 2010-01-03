@@ -10,7 +10,7 @@
 <title>Create a new account - Confirmation</title>
 </head>
 <body>
-<h3>Your account has just been created successfully !</h3>
+<h4>Your account has just been created successfully !</h4>
 <table>
 		<tr>
 			<td>Login</td>

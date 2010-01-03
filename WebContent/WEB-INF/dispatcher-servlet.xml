@@ -14,6 +14,16 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 				<prop key="createCustomerAccount.action">createCustomerAccountController</prop>
 				<prop key="searchUserAccount.action">searchUserAccountController</prop>
 				<prop key="deleteUserAccount.action">deleteUserAccountController</prop>
+				<prop key="connectUser.action">connectUserController</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="librarymanager.ui.ErrorConnectException">connectUserForm</prop>
 			</props>
 		</property>
 	</bean>
@@ -47,7 +57,14 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 	<bean id="deleteUserAccountController" class="librarymanager.ui.DeleteUserAccountController">
 		<property name="userManager" ref="userManager" />
-		<property name="formView" value="searchUserAccountConfirmation" />
+		<property name="formView" value="deleteUserAccountConfirmation" />
+		<property name="commandName" value="user" />
+		<property name="commandClass" value="librarymanager.core.User" />
+	</bean>
+
+	<bean id="connectUserController" class="librarymanager.ui.ConnectUserController">
+		<property name="userManager" ref="userManager" />
+		<property name="formView" value="connectUserConfirmation" />
 		<property name="commandName" value="user" />
 		<property name="commandClass" value="librarymanager.core.User" />
 	</bean>

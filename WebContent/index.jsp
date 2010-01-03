@@ -7,6 +7,6 @@
 <title>Library Manager</title>
 </head>
 <body>
-<jsp:forward page="jsp/searchUserAccountForm.jsp" />
+Hello !
 </body>
 </html>

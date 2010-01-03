@@ -35,7 +35,7 @@
 			<td>${user.email}</td>
 			<td><a
 				href="javascript:document.getElementById('form').submit();"
-				onclick="javascript:document.getElementById('delete').setAttribute('value','${user.login}');document.getElementById('form').setAttribute('action','deleteUserAccount.action')">
+				onclick="javascript:document.getElementById('delete').setAttribute('value','${user.login}');document.getElementById('form').setAttribute('action','/LibraryManager/deleteUserAccount.action')">
 			 delete 
 			</a></td>
 		</tr>

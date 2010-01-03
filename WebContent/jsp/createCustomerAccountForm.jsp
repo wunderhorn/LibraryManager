@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<form:form method="post" name="createCustomerAccountForm" action="../createCustomerAccount.action">
+<form:form method="post" name="createCustomerAccountForm" action="/LibraryManager/createCustomerAccount.action">
 	<table>
 		<tr>
 			<td>Login</td>

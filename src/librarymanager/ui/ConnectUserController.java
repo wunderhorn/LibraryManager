@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import librarymanager.app.UserManager;
 import librarymanager.core.Customer;
+import librarymanager.core.User;
+import librarymanager.core.UserNotExistException;
 
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
@@ -17,23 +19,51 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 /**
  * Controleur du formulaire d'ajout d'un client
  */
-public class CreateCustomerAccountController extends SimpleFormController {
-
+public class ConnectUserController extends SimpleFormController {
+	/** Interface de gestion des utilisateurs */
 	private UserManager userManager;
-	
+
+	/**
+	 * @return l'interface de gestion des utilisateurs
+	 */
+	public UserManager getUserManager() {
+		return userManager;
+	}
+
+	/**
+	 * Change l'interface de gesion des utilisateurs
+	 * 
+	 * @param userManager
+	 *            La nouvelle interface de gestion des utilisateurs
+	 */
+	public void setUserManager(UserManager userManager) {
+		this.userManager = userManager;
+	}
+
+	@Override
 	protected Object formBackingObject(HttpServletRequest request)
 			throws Exception {
+		
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
-		String lastName = request.getParameter("lastName");
-		String firstName = request.getParameter("firstName");
-		String email = request.getParameter("email");
+
+		User user = null;
 		
-		if (login.isEmpty() || password.isEmpty() || lastName.isEmpty() || firstName.isEmpty()|| email.isEmpty()) {
-			//TODO Retour sur la page, champs invalides
+		try {
+			user = userManager.getUser(login);
+		} catch (UserNotExistException exception) {
+			ErrorConnectException errorConnectException = new ErrorConnectException("L'utilisateur n'existe pas");
+			request.setAttribute("errorConnectException", errorConnectException);
+			throw errorConnectException;
+		}
+
+		if (!user.getPassword().equals(password)) {
+			ErrorConnectException errorConnectException = new ErrorConnectException("Le mot de passe est invalide");
+			request.setAttribute("errorConnectException", errorConnectException);
+			throw errorConnectException;
 		}
 		
-		return userManager.createCustomer(login, password, lastName, firstName, email);
+		return user;
 	}
 
 	protected Map<String, Object> referenceData(HttpServletRequest request, Object command,
@@ -49,23 +79,11 @@ public class CreateCustomerAccountController extends SimpleFormController {
 		
 		return model;
 	}
-
+	
 	protected ModelAndView onSubmit(HttpServletRequest request,
 			HttpServletResponse response, Object command, BindException errors)
 			throws Exception {
 		
-		Customer customer = (Customer)command;
-		userManager.addUser(customer);
-		
 		return this.showForm(request, response, errors);
 	}
-	
-	public UserManager getUserManager() {
-		return userManager;
-	}
-
-	public void setUserManager(UserManager userManager) {
-		this.userManager = userManager;
-	}
-
 }
