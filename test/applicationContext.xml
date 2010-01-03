@@ -22,6 +22,7 @@
 	
 	<bean id="loanManager" class="librarymanager.app.impl.LoanManagerImpl">
 		<property name="loanDAO" ref="loanDAO" />
+		<property name="stockManager" ref="stockManager" />
 	</bean>
 
 	<bean id="userDAO" class="librarymanager.dao.impl.UserDAOImpl">

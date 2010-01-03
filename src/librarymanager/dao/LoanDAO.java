@@ -58,4 +58,15 @@ public interface LoanDAO {
 	 *             survient
 	 */
 	public boolean exists(Loan loan) throws Exception;
+	
+	/**
+	 * Met a jour un pret dans la base de donnees
+	 * 
+	 * @param loan
+	 *            Le pret a mettre a jour
+	 * @throws Exception
+	 *             Levee si une erreur de communication avec la base de donnees
+	 *             survient
+	 */
+	public void updateLoan(Loan loan) throws Exception;
 }

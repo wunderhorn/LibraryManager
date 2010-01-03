@@ -1,6 +1,7 @@
 package librarymanager.app;
 
 import librarymanager.core.Book;
+import librarymanager.core.EmptyStockException;
 import librarymanager.core.Stock;
 import librarymanager.core.StockAlreadyExistException;
 import librarymanager.core.StockNotExistException;
@@ -63,4 +64,57 @@ public interface StockManager {
 	 *         donnees, <code>false</code> sinon
 	 */
 	public boolean exists(Stock stock);
+	
+	/**
+	 * Incremente le stock total d'un livre
+	 * 
+	 * @param book
+	 *            Livre dont le stock total doit etre incremente
+	 * @param value
+	 * 			  Valeur de l'incrementation       
+	 */            
+	public void incrementTotalStock(Book book, int value) throws StockNotExistException;
+	
+	/**
+	 * Incremente le stock restant d'un livre
+	 * 
+	 * @param book
+	 *            Livre dont le stock restantd oit etre incremente
+	 * @param value
+	 * 			  Valeur de l'incrementation       
+	 * @throws StockNotExistException
+	 * 			   levee si le stock specifie en parametre n'a pas ete
+	 *             enregistre dans la base de donnees
+	 */            
+	public void incrementRemainingStock(Book book, int value) throws StockNotExistException;
+	
+	/**
+	 * Decremente le stock total d'un livre
+	 * 
+	 * @param book
+	 *            Livre dont le stock total doit etre decremente
+	 * @param value
+	 * 			  Valeur de la decrementation       
+	 * @throws EmptyStockException
+	 * 			   levee si le stock descend en dessous de zero
+	 * @throws StockNotExistException
+	 * 			   levee si le stock specifie en parametre n'a pas ete
+	 *             enregistre dans la base de donnees
+	 */            
+	public void decrementTotalStock(Book book, int value) throws StockNotExistException, EmptyStockException;
+	
+	/**
+	 * Decremente le stock restant d'un livre
+	 * 
+	 * @param book
+	 *            Livre dont le stock restant doit etre decremente
+	 * @param value
+	 * 			  Valeur de la decrementation       
+	 * @throws EmptyStockException
+	 * 			   levee si le stock descend en dessous de zero
+	 * @throws StockNotExistException
+	 * 			   levee si le stock specifie en parametre n'a pas ete
+	 *             enregistre dans la base de donnees
+	 */            
+	public void decrementRemainingStock(Book book, int value) throws StockNotExistException, EmptyStockException;
 }

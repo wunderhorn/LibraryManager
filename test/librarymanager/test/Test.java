@@ -43,7 +43,7 @@ public class Test {
 		bookManager.addBook(book);
 		
 		StockManager stockManager = (StockManager) context.getBean("stockManager");
-		Stock stock = stockManager.createStock(book, 3);
+		Stock stock = stockManager.createStock(book, 1);
 			
 		stockManager.addStock(stock);
 		System.out.println(stockManager.exists(stock));
@@ -52,19 +52,25 @@ public class Test {
 		System.out.println("#####" + stock_data.getBook() + "#####");
 		
 		LoanManager loanManager = (LoanManager) context.getBean("loanManager");
-		Loan loan = loanManager.createLoan(book, admin, Calendar.getInstance().getTime(), Calendar.getInstance().getTime());
+		Loan loan = loanManager.createLoan(book, admin, Calendar.getInstance().getTime());
 		
+		System.out.println("///// Avant " + stockManager.getStock(book).getRemainingStock() + "/////");
 		loanManager.addLoan(loan);
+		System.out.println("///// Pendant " + stockManager.getStock(book).getRemainingStock() + "/////");
+		
+		loanManager.closeLoan(loan, Calendar.getInstance().getTime());
+		System.out.println("///// Après " + stockManager.getStock(book).getRemainingStock() + "/////");
 		
 		Loan loan_data = loanManager.getLoan(book,admin);
 		System.out.println("#####" + loan_data.getBook() + "#####");
 		System.out.println("#####" + loan_data.getUser() + "#####");
 		System.out.println("#####" + loan_data.getUser().getClass() + "#####");
 		
-//		loanManager.removeLoan(loan);
-//		stockManager.removeStock(stock);
-//		bookManager.removeBook(book);
-//		userManager.removeUser(admin);
+		loanManager.removeLoan(loan);
+		stockManager.removeStock(stock);
+		bookManager.removeBook(book);
+		userManager.removeUser(admin);
+
 	}
 
 }

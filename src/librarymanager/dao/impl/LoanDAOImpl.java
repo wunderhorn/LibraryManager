@@ -48,4 +48,9 @@ public class LoanDAOImpl extends HibernateDaoSupport implements LoanDAO {
 				loan);
 		getHibernateTemplate().delete(loanToDelete);
 	}
+	
+	@Override
+	public void updateLoan(Loan loan) throws Exception {
+		getHibernateTemplate().update(loan);
+	}
 }

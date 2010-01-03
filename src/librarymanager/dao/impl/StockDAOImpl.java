@@ -41,4 +41,9 @@ public class StockDAOImpl extends HibernateDaoSupport implements StockDAO {
 		Stock stockToDelete = (Stock) getHibernateTemplate().get(Stock.class,stock);
 		getHibernateTemplate().delete(stockToDelete);
 	}
+	
+	@Override
+	public void updateStock(Stock stock) throws Exception {
+		getHibernateTemplate().update(stock);
+	}
 }

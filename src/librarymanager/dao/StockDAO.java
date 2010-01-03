@@ -55,4 +55,15 @@ public interface StockDAO {
 	 *             survient
 	 */
 	public boolean exists(Stock stock) throws Exception;
+	
+	/**
+	 * Met a jour un stock dans la base de donnees
+	 * 
+	 * @param stock
+	 *            Le stock a mettre a jour
+	 * @throws Exception
+	 *             Levee si une erreur de communication avec la base de donnees
+	 *             survient
+	 */
+	public void updateStock(Stock stock) throws Exception;
 }

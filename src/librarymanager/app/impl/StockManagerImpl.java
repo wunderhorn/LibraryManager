@@ -2,6 +2,7 @@ package librarymanager.app.impl;
 
 import librarymanager.app.StockManager;
 import librarymanager.core.Book;
+import librarymanager.core.EmptyStockException;
 import librarymanager.core.Stock;
 import librarymanager.core.StockAlreadyExistException;
 import librarymanager.core.StockNotExistException;
@@ -12,7 +13,9 @@ import librarymanager.dao.StockDAO;
  */
 public class StockManagerImpl implements StockManager {
 
-	/** Gestion de la communication entre les {@link Stock} et la base de donnees */
+	/**
+	 * Gestion de la communication entre les {@link Stock} et la base de donnees
+	 */
 	private StockDAO stockDAO;
 
 	public StockManagerImpl() {
@@ -37,7 +40,7 @@ public class StockManagerImpl implements StockManager {
 
 	@Override
 	public Stock createStock(Book book, int totalStock) {
-		return new Stock(book,totalStock, totalStock);
+		return new Stock(book, totalStock, totalStock);
 	}
 
 	@Override
@@ -49,7 +52,7 @@ public class StockManagerImpl implements StockManager {
 		try {
 			stockDAO.removeStock(stock);
 		} catch (Exception exception) {
-			System.err.println("Stock#removeStock() exeception: "
+			System.err.println("Stock#removeStock() exception: "
 					+ exception.getMessage());
 		}
 	}
@@ -63,7 +66,7 @@ public class StockManagerImpl implements StockManager {
 		try {
 			stockDAO.saveStock(stock);
 		} catch (Exception exception) {
-			System.err.println("Stock#addStock() exeception: "
+			System.err.println("Stock#addStock() exception: "
 					+ exception.getMessage());
 		}
 	}
@@ -77,23 +80,85 @@ public class StockManagerImpl implements StockManager {
 			System.err.println("Stock#getStock() exception: "
 					+ exception.getMessage());
 		}
-		
+
 		if (stock == null)
 			throw new StockNotExistException("The stock for the book " + book
 					+ " does not exists");
 		else
 			return stock;
 	}
-	
+
 	@Override
 	public boolean exists(Stock stock) {
 		try {
 			return stockDAO.exists(stock);
 		} catch (Exception exception) {
-			System.err.println("Stock#exists() exeception: "
+			System.err.println("Stock#exists() exception: "
 					+ exception.getMessage());
 			return false;
 		}
 	}
 
+	@Override
+	public void decrementRemainingStock(Book book, int value)
+			throws StockNotExistException, EmptyStockException {
+		Stock stock = getStock(book);
+		
+		if (stock.getRemainingStock() - value < 0)
+			throw new EmptyStockException();
+		
+		stock.setRemainingStock(stock.getRemainingStock() - value);
+		try {
+			stockDAO.updateStock(stock);
+		} catch (Exception exception) {
+			System.err.println("Stock#addStock() exception: "
+					+ exception.getMessage());
+		}
+	}
+
+	@Override
+	public void decrementTotalStock(Book book, int value)
+			throws StockNotExistException, EmptyStockException {
+		Stock stock = getStock(book);
+		
+		if (stock.getTotalStock() - value < 0 || stock.getRemainingStock() - value < 0)
+			throw new EmptyStockException();
+		
+		stock.setRemainingStock(stock.getRemainingStock() - value);
+		stock.setTotalStock(stock.getTotalStock() - value);
+		try {
+			stockDAO.updateStock(stock);
+		} catch (Exception exception) {
+			System.err.println("Stock#addStock() exception: "
+					+ exception.getMessage());
+		}
+	}
+
+	@Override
+	public void incrementRemainingStock(Book book, int value)
+			throws StockNotExistException {
+		Stock stock = getStock(book);
+
+		stock.setRemainingStock(stock.getRemainingStock() + value);
+		try {
+			stockDAO.updateStock(stock);
+		} catch (Exception exception) {
+			System.err.println("Stock#addStock() exception: "
+					+ exception.getMessage());
+		}
+	}
+
+	@Override
+	public void incrementTotalStock(Book book, int value)
+			throws StockNotExistException {
+		Stock stock = getStock(book);
+		stock.setTotalStock(stock.getTotalStock() + value);
+		stock.setRemainingStock(stock.getRemainingStock() + value);
+		try {
+			stockDAO.updateStock(stock);
+		} catch (Exception exception) {
+			System.err.println("Stock#addStock() exception: "
+					+ exception.getMessage());
+		}
+	}
 }

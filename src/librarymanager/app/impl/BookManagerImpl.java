@@ -48,7 +48,7 @@ public class BookManagerImpl implements BookManager {
 		try {
 			bookDAO.removeBook(book);
 		} catch (Exception exception) {
-			System.err.println("Book#removeBook() exeception: "
+			System.err.println("Book#removeBook() exception: "
 					+ exception.getMessage());
 		}
 	}
@@ -62,7 +62,7 @@ public class BookManagerImpl implements BookManager {
 		try {
 			bookDAO.saveBook(book);
 		} catch (Exception exception) {
-			System.err.println("Book#addBook() exeception: "
+			System.err.println("Book#addBook() exception: "
 					+ exception.getMessage());
 		}
 	}
@@ -72,7 +72,7 @@ public class BookManagerImpl implements BookManager {
 		try {
 			return bookDAO.exists(book);
 		} catch (Exception exception) {
-			System.err.println("Book#exists() exeception: "
+			System.err.println("Book#exists() exception: "
 					+ exception.getMessage());
 			return false;
 		}
