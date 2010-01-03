@@ -12,6 +12,8 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 		<property name="mappings">
 			<props>
 				<prop key="createCustomerAccount.action">createCustomerAccountController</prop>
+				<prop key="searchUserAccount.action">searchUserAccountController</prop>
+				<prop key="deleteUserAccount.action">deleteUserAccountController</prop>
 			</props>
 		</property>
 	</bean>
@@ -34,6 +36,20 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 		<property name="formView" value="createCustomerAccountConfirmation" />
 		<property name="commandName" value="customer" />
 		<property name="commandClass" value="librarymanager.core.Customer" />
+	</bean>
+
+	<bean id="searchUserAccountController" class="librarymanager.ui.SearchUserAccountController">
+		<property name="userManager" ref="userManager" />
+		<property name="formView" value="searchUserAccountConfirmation" />
+		<property name="commandName" value="user" />
+		<property name="commandClass" value="librarymanager.core.User" />
+	</bean>
+
+	<bean id="deleteUserAccountController" class="librarymanager.ui.DeleteUserAccountController">
+		<property name="userManager" ref="userManager" />
+		<property name="formView" value="searchUserAccountConfirmation" />
+		<property name="commandName" value="user" />
+		<property name="commandClass" value="librarymanager.core.User" />
 	</bean>
 
 </beans>

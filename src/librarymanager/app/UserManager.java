@@ -1,5 +1,8 @@
 package librarymanager.app;
 
+import java.util.Hashtable;
+import java.util.List;
+
 import librarymanager.core.Admin;
 import librarymanager.core.Customer;
 import librarymanager.core.LibraryWorker;
@@ -110,4 +113,12 @@ public interface UserManager {
 	 *         donnees, <code>false</code> sinon
 	 */
 	public boolean exists(User user);
+
+	/**
+	 * Recupere un utilisateur dans la base de donnees
+	 * 
+	 * @param parameter
+	 *            Les parametres de la requete
+	 */
+	public List<User> getUsers(Hashtable<String, String> parameter);
 }

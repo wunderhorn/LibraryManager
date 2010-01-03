@@ -1,5 +1,8 @@
 package librarymanager.dao;
 
+import java.util.Hashtable;
+import java.util.List;
+
 import librarymanager.core.User;
 import librarymanager.core.UserNotExistException;
 
@@ -56,4 +59,12 @@ public interface UserDAO
 	 *             survient
 	 */
 	public boolean exists(User user) throws Exception;
+	
+	/**
+	 * Recupere un utilisateur dans la base de donnees
+	 * 
+	 * @param parameter
+	 *            Les parametres de la requete
+	 */
+	public List<User> getUsers(Hashtable<String, String> parameter) throws Exception;
 }

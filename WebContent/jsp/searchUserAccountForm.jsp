@@ -7,19 +7,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
 
-<title>Create a new account</title>
+<title>Search a new account</title>
 </head>
 <body>
 
-<form:form method="post" name="createCustomerAccountForm" action="../createCustomerAccount.action">
+<form:form method="post" name="searchUserAccountForm" action="../searchUserAccount.action">
 	<table>
 		<tr>
 			<td>Login</td>
 			<td><input type="text" name="login" /></td>
-		</tr>
-		<tr>
-			<td>Password</td>
-			<td><input type="text" name="password" /></td>
 		</tr>
 		<tr>
 			<td>LastName</td>
@@ -34,7 +30,7 @@
 			<td><input type="text" name="email" /></td>
 		</tr>
 		<tr>
-			<td><input type="submit" value="Create account" /></td>
+			<td><input type="submit" value="search users" /></td>
 		</tr>
 	</table>
 

@@ -1,5 +1,8 @@
 package librarymanager.app.impl;
 
+import java.util.Hashtable;
+import java.util.List;
+
 import librarymanager.app.UserManager;
 import librarymanager.core.Admin;
 import librarymanager.core.Customer;
@@ -20,7 +23,7 @@ public class UserManagerImpl implements UserManager {
 
 	public UserManagerImpl() {
 	}
-	
+
 	/**
 	 * @return Le {@link UserDAO}
 	 */
@@ -37,7 +40,7 @@ public class UserManagerImpl implements UserManager {
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
-	
+
 	@Override
 	public Admin createAdmin(String login, String password, String lastName,
 			String firstName, String email) {
@@ -93,7 +96,7 @@ public class UserManagerImpl implements UserManager {
 			System.err.println("User#getUser() exception: "
 					+ exception.getMessage());
 		}
-		
+
 		if (user == null)
 			throw new UserNotExistException("The user with login " + login
 					+ " does not exists");
@@ -110,5 +113,20 @@ public class UserManagerImpl implements UserManager {
 					+ exception.getMessage());
 			return false;
 		}
+	}
+
+	@Override
+	public List<User> getUsers(Hashtable<String, String> parameter) {
+
+		List<User> result = null;
+
+		try {
+			result = userDAO.getUsers(parameter);
+		} catch (Exception exception) {
+			System.err.println("User#getUser() exception: "
+					+ exception.getMessage());
+		}
+		
+		return result;
 	}
 }

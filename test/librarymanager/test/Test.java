@@ -1,6 +1,8 @@
 package librarymanager.test;
 
 import java.util.Calendar;
+import java.util.Hashtable;
+import java.util.List;
 
 import librarymanager.app.BookManager;
 import librarymanager.app.LoanManager;
@@ -8,12 +10,10 @@ import librarymanager.app.StockManager;
 import librarymanager.app.UserManager;
 import librarymanager.core.Admin;
 import librarymanager.core.Book;
-import librarymanager.core.Customer;
 import librarymanager.core.Loan;
 import librarymanager.core.Stock;
 import librarymanager.core.User;
 
-import org.apache.naming.java.javaURLContextFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Test {
@@ -66,11 +66,21 @@ public class Test {
 		System.out.println("#####" + loan_data.getUser() + "#####");
 		System.out.println("#####" + loan_data.getUser().getClass() + "#####");
 		
+		Hashtable<String, String> query = new Hashtable<String, String>();
+		query.put("login", "Admin_login");
+		
+		List<User> result = userManager.getUsers(query);
+		
+		for (User u : result)
+			System.out.println("????????" + u + "????????");
+		
 		loanManager.removeLoan(loan);
 		stockManager.removeStock(stock);
 		bookManager.removeBook(book);
 		userManager.removeUser(admin);
 
+		
+		
 	}
 
 }

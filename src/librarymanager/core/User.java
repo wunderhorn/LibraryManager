@@ -4,7 +4,7 @@ package librarymanager.core;
  * Classe abstraite representant un utilisateur
  * 
  */
-public abstract class User {
+public class User {
 
 	/** Valeur par defaut d'un champ */
 	public final String DEFAULT_FIELD = "NONE";
