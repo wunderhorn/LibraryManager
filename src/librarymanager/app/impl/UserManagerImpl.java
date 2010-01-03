@@ -126,7 +126,7 @@ public class UserManagerImpl implements UserManager {
 			System.err.println("User#getUser() exception: "
 					+ exception.getMessage());
 		}
-		
+
 		return result;
 	}
 }
