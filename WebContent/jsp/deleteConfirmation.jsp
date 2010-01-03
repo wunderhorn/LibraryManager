@@ -4,7 +4,7 @@
 <html>
 <head>
 
-<title>Delete user - Confirmation</title>
+<title>Delete - Confirmation</title>
 </head>
 <body>
 	<h4>Deleted OK !</h4>

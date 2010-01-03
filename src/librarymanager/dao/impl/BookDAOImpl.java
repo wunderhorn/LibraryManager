@@ -37,6 +37,11 @@ public class BookDAOImpl extends HibernateDaoSupport implements BookDAO {
 	}
 	
 	@Override
+	public Book getBook(String isbn) throws Exception {
+		return (Book) getHibernateTemplate().get(Book.class, isbn);
+	}
+	
+	@Override
 	public List<Book> getBooks(Hashtable<String, String> parameter)
 			throws Exception {
 

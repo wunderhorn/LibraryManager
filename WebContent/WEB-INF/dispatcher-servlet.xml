@@ -17,6 +17,7 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 				<prop key="connectUser.action">connectUserController</prop>
 				<prop key="registerBook.action">registerBookController</prop>
 				<prop key="searchBook.action">searchBookController</prop>
+				<prop key="deleteBook.action">deleteBookController</prop>
 			</props>
 		</property>
 	</bean>
@@ -85,6 +86,14 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 		<property name="bookManager" ref="bookManager" />
 		<property name="stockManager" ref="stockManager" />
 		<property name="formView" value="searchBookConfirmation" />
+		<property name="commandName" value="stock" />
+		<property name="commandClass" value="librarymanager.core.Stock" />
+	</bean>
+
+	<bean id="deleteBookController" class="librarymanager.ui.DeleteBookController">
+		<property name="bookManager" ref="bookManager" />
+		<property name="stockManager" ref="stockManager" />
+		<property name="formView" value="deleteConfirmation" />
 		<property name="commandName" value="stock" />
 		<property name="commandClass" value="librarymanager.core.Stock" />
 	</bean>

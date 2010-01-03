@@ -33,6 +33,7 @@ public interface BookManager {
 	 * @throws BookAlreadyExistException
 	 *             levee si le livre specifie en parametre est deja present dans
 	 *             la base de donnees
+	 * @return Le nouveau livre cree       
 	 */
 	public void addBook(Book book) throws BookAlreadyExistException;
 
@@ -58,10 +59,23 @@ public interface BookManager {
 	public boolean exists(Book book);
 	
 	/**
+	 * Recupere un livre dans la base de donnees
+	 * 
+	 * @param isbn
+	 *            L'isbn du livre specifique a recuperer
+	 * @throws BookNotExistException
+	 *             levee si l'isbn specifie en parametre ne correspond
+	 *             a aucun livre enregistre dans la base de donnees
+	 * @return Le livre recherche
+	 */
+	public Book getBook(String isbn) throws BookNotExistException;
+	
+	/**
 	 * Recupere un book dans la base de donnees
 	 * 
 	 * @param parameter
 	 *            Les parametres de la requete
+	 * @return La liste des livres recherches        
 	 */
 	public List<Book> getBooks(Hashtable<String, String> parameter);
 }

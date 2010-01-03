@@ -45,12 +45,23 @@ public interface BookDAO {
 	 *             survient
 	 */
 	public boolean exists(Book book) throws Exception;
-	
+
 	/**
 	 * Recupere un livre dans la base de donnees
 	 * 
 	 * @param parameter
 	 *            Les parametres de la requete
 	 */
-	public List<Book> getBooks(Hashtable<String, String> parameter) throws Exception;
+	public List<Book> getBooks(Hashtable<String, String> parameter)
+			throws Exception;
+
+	/**
+	 * Recupere des livres dans la base de donnees
+	 * 
+	 * @param parameter
+	 *            Les parametres de la requete
+	 * @return La liste des livres recherches
+	 */
+	public Book getBook(String isbn)
+			throws Exception;
 }

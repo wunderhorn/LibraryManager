@@ -82,6 +82,23 @@ public class BookManagerImpl implements BookManager {
 	}
 	
 	@Override
+	public Book getBook(String isbn) throws BookNotExistException {
+		Book book = null;
+		try {
+			book = (Book) bookDAO.getBook(isbn);
+		} catch (Exception exception) {
+			System.err.println("Book#getBook() exception: "
+					+ exception.getMessage());
+		}
+
+		if (book == null)
+			throw new BookNotExistException("The book with isbn " + isbn
+					+ " does not exists");
+		else
+			return book;
+	}
+	
+	@Override
 	public List<Book> getBooks(Hashtable<String, String> parameter) {
 
 		List<Book> result = null;
@@ -95,5 +112,4 @@ public class BookManagerImpl implements BookManager {
 
 		return result;
 	}
-
 }
