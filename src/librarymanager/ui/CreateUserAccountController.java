@@ -34,7 +34,7 @@ public class CreateUserAccountController extends SimpleFormController {
 		if (login.isEmpty() || password.isEmpty() || lastName.isEmpty()
 				|| firstName.isEmpty() || email.isEmpty()) {
 			ExtremlyBadCreateUserException extremlyBadCreateUserException = new ExtremlyBadCreateUserException(
-					"All fields is required");
+					"All fields are required");
 			request.setAttribute("extremlyBadCreateUserException",
 					extremlyBadCreateUserException);
 			throw extremlyBadCreateUserException;

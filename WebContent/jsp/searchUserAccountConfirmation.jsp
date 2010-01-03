@@ -2,10 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
 
 <title>Search a user account - Confirmation</title>
@@ -26,6 +24,9 @@
 		<td>
 		<h4>Email</h4>
 		</td>
+		<td>
+		<h4>Type</h4>
+		</td>
 	</tr>
 	<c:forEach var="user" items="${query}">
 		<tr>
@@ -33,9 +34,10 @@
 			<td>${user.lastName}</td>
 			<td>${user.firstName}</td>
 			<td>${user.email}</td>
+			<td>${user.class.simpleName}</td>
 			<td><a
 				href="javascript:document.getElementById('form').submit();"
-				onclick="javascript:document.getElementById('delete').setAttribute('value','${user.login}');document.getElementById('form').setAttribute('action','/LibraryManager/deleteUserAccount.action')">
+				onclick="javascript:document.getElementById('delete').setAttribute('value','${user.login}')">
 			 delete 
 			</a></td>
 		</tr>
@@ -43,9 +45,10 @@
 
 </table>
 
-<form:form id="form" method="post">
+<form:form id="form" method="post" action="/LibraryManager/deleteUserAccount.action" >
 	<input id="delete" name="deleteLogin" type="hidden" />
 </form:form>
-
+	<br />
+	<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home - Page</a>
 </body>
 </html>

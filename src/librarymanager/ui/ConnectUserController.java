@@ -53,7 +53,7 @@ public class ConnectUserController extends SimpleFormController {
 			user = userManager.getUser(login);
 		} catch (UserNotExistException exception) {
 			ErrorConnectException errorConnectException = new ErrorConnectException(
-					"L'utilisateur n'existe pas");
+					"User " + login + " doesn't exist");
 			request
 					.setAttribute("errorConnectException",
 							errorConnectException);
@@ -62,7 +62,7 @@ public class ConnectUserController extends SimpleFormController {
 
 		if (!user.getPassword().equals(password)) {
 			ErrorConnectException errorConnectException = new ErrorConnectException(
-					"Le mot de passe est invalide");
+					"Authentification failed. Bad password");
 			request
 					.setAttribute("errorConnectException",
 							errorConnectException);

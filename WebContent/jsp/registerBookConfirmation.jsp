@@ -5,30 +5,26 @@
 <html>
 <head>
 
-<title>Create a new account - Confirmation</title>
+<title>Register a new book - Confirmation</title>
 </head>
 <body>
-<h4>The account has just been created successfully!</h4>
+<h4>The book has just been registered successfully!</h4>
 <table>
 	<tr>
-		<td>Login</td>
-		<td>${login}</td>
+		<td>ISBN</td>
+		<td>${isbn}</td>
 	</tr>
 	<tr>
-		<td>Password</td>
-		<td>${password}</td>
+		<td>Author</td>
+		<td>${author}</td>
 	</tr>
 	<tr>
-		<td>LastName</td>
-		<td>${lastName}</td>
+		<td>Editor</td>
+		<td>${editor}</td>
 	</tr>
 	<tr>
-		<td>FirstName</td>
-		<td>${firstName}</td>
-	</tr>
-	<tr>
-		<td>Email</td>
-		<td>${email}</td>
+		<td>Stock</td>
+		<td>${stock}</td>
 	</tr>
 </table>
 	<br />

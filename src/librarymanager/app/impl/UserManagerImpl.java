@@ -123,7 +123,7 @@ public class UserManagerImpl implements UserManager {
 		try {
 			result = userDAO.getUsers(parameter);
 		} catch (Exception exception) {
-			System.err.println("User#getUser() exception: "
+			System.err.println("User#getUsers() exception: "
 					+ exception.getMessage());
 		}
 

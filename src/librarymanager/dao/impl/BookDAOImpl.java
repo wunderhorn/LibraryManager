@@ -1,9 +1,14 @@
 package librarymanager.dao.impl;
 
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.List;
 
 import librarymanager.core.Book;
 import librarymanager.dao.BookDAO;
+
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
  * Implementation de la gestion de la communication entre un {@link Book} et la
@@ -29,5 +34,46 @@ public class BookDAOImpl extends HibernateDaoSupport implements BookDAO {
 		Book bookToDelete = (Book) getHibernateTemplate().get(Book.class,
 				book.getIsbn());
 		getHibernateTemplate().delete(bookToDelete);
+	}
+	
+	@Override
+	public List<Book> getBooks(Hashtable<String, String> parameter)
+			throws Exception {
+
+		Enumeration<String> eQuery = parameter.keys();
+		String whereClause = "";
+
+		while (eQuery.hasMoreElements()) {
+			String parameterName = eQuery.nextElement();
+
+			if (parameter.get(parameterName).equals(""))
+				continue;
+
+			whereClause += whereClause.equals("") ? "WHERE " : "AND ";
+
+			if (parameterName.equals("isbn")
+					&& !parameter.get(parameterName).equals(""))
+				whereClause += "book.isbn LIKE '"
+						+ parameter.get(parameterName) + "' ";
+
+			if (parameterName.equals("author")
+					&& !parameter.get(parameterName).equals(""))
+				whereClause += "book.author LIKE '"
+						+ parameter.get(parameterName) + "' ";
+
+			if (parameterName.equals("editor")
+					&& !parameter.get(parameterName).equals(""))
+				whereClause += "book.editor LIKE '"
+						+ parameter.get(parameterName) + "' ";
+
+		}
+		
+		List<Book> result = new ArrayList<Book>();
+
+		for (Object book : getHibernateTemplate().find(
+				"FROM Book book " + whereClause))
+			result.add((Book) book);
+
+		return result;
 	}
 }

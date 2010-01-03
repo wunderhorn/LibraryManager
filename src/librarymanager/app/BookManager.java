@@ -1,5 +1,8 @@
 package librarymanager.app;
 
+import java.util.Hashtable;
+import java.util.List;
+
 import librarymanager.core.Book;
 import librarymanager.core.BookAlreadyExistException;
 import librarymanager.core.BookNotExistException;
@@ -53,4 +56,12 @@ public interface BookManager {
 	 *         donnees, <code>false</code> sinon
 	 */
 	public boolean exists(Book book);
+	
+	/**
+	 * Recupere un book dans la base de donnees
+	 * 
+	 * @param parameter
+	 *            Les parametres de la requete
+	 */
+	public List<Book> getBooks(Hashtable<String, String> parameter);
 }

@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import librarymanager.app.BookManager;
+import librarymanager.app.StockManager;
 import librarymanager.core.Book;
+import librarymanager.core.BookAlreadyExistException;
+import librarymanager.core.Stock;
+import librarymanager.core.StockAlreadyExistException;
 
 import org.springframework.validation.BindException;
 import org.springframework.validation.Errors;
@@ -18,28 +22,9 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
  * Controle les enregistrements de nouveaux livres
  */
 public class RegisterBookController extends SimpleFormController {
-	/** Interface de gestion des livres de la librairie */
+
 	private BookManager bookManager;
-
-	public RegisterBookController() {
-	}
-
-	/**
-	 * Retourne l'interface de gestion des livres de la librairie
-	 */
-	public BookManager getBookManager() {
-		return bookManager;
-	}
-
-	/**
-	 * Change l'interface de gestion des livres de la librairie
-	 * 
-	 * @param bookManager
-	 *            La nouvelle interface
-	 */
-	public void setBookManager(BookManager bookManager) {
-		this.bookManager = bookManager;
-	}
+	private StockManager stockManager;
 
 	@Override
 	protected Object formBackingObject(HttpServletRequest request)
@@ -47,25 +32,34 @@ public class RegisterBookController extends SimpleFormController {
 		String isbn = request.getParameter("isbn");
 		String author = request.getParameter("author");
 		String editor = request.getParameter("editor");
+		int totalStock = new Integer(request.getParameter("stock")).intValue();
 
-		Book book = bookManager.createBook(isbn, author, editor);
-
-		if (bookManager.exists(book)) {
-			// TODO Redirection vers la page d'erreur
+		if (isbn.isEmpty() || author.isEmpty() || editor.isEmpty()) {
+			RegisterBookException registerBookException = new RegisterBookException(
+					"All fields are required");
+			request
+					.setAttribute("registerBookException",
+							registerBookException);
+			throw registerBookException;
 		}
 
-		return book;
+		Book book = bookManager.createBook(isbn, author, editor);
+		Stock stock = stockManager.createStock(book, totalStock);
+
+		return stock;
 	}
 
 	@Override
 	protected Map<String, Object> referenceData(HttpServletRequest request,
 			Object command, Errors errors) throws Exception {
-		Book book = (Book) command;
+		Stock stock = (Stock) command;
+		Book book = stock.getBook();
 
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("isbn", book.getIsbn());
 		model.put("author", book.getAuthor());
 		model.put("editor", book.getEditor());
+		model.put("stock", stock.getTotalStock());
 
 		return model;
 	}
@@ -74,10 +68,48 @@ public class RegisterBookController extends SimpleFormController {
 	protected ModelAndView onSubmit(HttpServletRequest request,
 			HttpServletResponse response, Object command, BindException errors)
 			throws Exception {
-		Book book = (Book) command;
-		bookManager.addBook(book);
+		Stock stock = (Stock) command;
+		Book book = stock.getBook();
+
+
+		try {
+			bookManager.addBook(book);
+			stockManager.addStock(stock);
+		} catch (BookAlreadyExistException bookAlreadyExistException) {
+			RegisterBookException registerBookException = new RegisterBookException(
+					"Book " + book.getIsbn()
+							+ " already exists. Please delete him before");
+			request
+					.setAttribute("registerBookException",
+							registerBookException);
+			throw registerBookException;
+		} catch (StockAlreadyExistException stockAlreadyExistException) {
+			RegisterBookException registerBookException = new RegisterBookException(
+					"Stock for the " + book.getIsbn()
+							+ " already exists. Please delete him before");
+			request
+					.setAttribute("registerBookException",
+							registerBookException);
+			throw registerBookException;
+		}
 
 		return this.showForm(request, response, errors);
+	}
+
+	public BookManager getBookManager() {
+		return bookManager;
+	}
+
+	public void setBookManager(BookManager bookManager) {
+		this.bookManager = bookManager;
+	}
+
+	public StockManager getStockManager() {
+		return stockManager;
+	}
+
+	public void setStockManager(StockManager stockManager) {
+		this.stockManager = stockManager;
 	}
 
 }

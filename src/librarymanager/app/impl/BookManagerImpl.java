@@ -1,5 +1,8 @@
 package librarymanager.app.impl;
 
+import java.util.Hashtable;
+import java.util.List;
+
 import librarymanager.app.BookManager;
 import librarymanager.core.Book;
 import librarymanager.core.BookAlreadyExistException;
@@ -76,6 +79,21 @@ public class BookManagerImpl implements BookManager {
 					+ exception.getMessage());
 			return false;
 		}
+	}
+	
+	@Override
+	public List<Book> getBooks(Hashtable<String, String> parameter) {
+
+		List<Book> result = null;
+
+		try {
+			result = bookDAO.getBooks(parameter);
+		} catch (Exception exception) {
+			System.err.println("Book#getBooks() exception: "
+					+ exception.getMessage());
+		}
+
+		return result;
 	}
 
 }

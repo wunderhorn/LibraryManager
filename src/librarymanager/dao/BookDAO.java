@@ -1,5 +1,8 @@
 package librarymanager.dao;
 
+import java.util.Hashtable;
+import java.util.List;
+
 import librarymanager.core.Book;
 
 /**
@@ -42,4 +45,12 @@ public interface BookDAO {
 	 *             survient
 	 */
 	public boolean exists(Book book) throws Exception;
+	
+	/**
+	 * Recupere un livre dans la base de donnees
+	 * 
+	 * @param parameter
+	 *            Les parametres de la requete
+	 */
+	public List<Book> getBooks(Hashtable<String, String> parameter) throws Exception;
 }
