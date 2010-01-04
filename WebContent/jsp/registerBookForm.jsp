@@ -2,13 +2,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <jsp:useBean id="registerBookException"
-	class="librarymanager.ui.RegisterBookException"
-	scope="request" />
+	class="librarymanager.ui.RegisterBookException" scope="request" />
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
 
 <title>Register a new book</title>
@@ -42,6 +39,11 @@
 	${registerBookException.message}
 
 </form:form>
-
+<br />
+<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
+Page</a>
+	<br />
+	<br />
+	<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>

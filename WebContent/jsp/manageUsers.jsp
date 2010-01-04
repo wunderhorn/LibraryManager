@@ -14,5 +14,12 @@ user</a>
 <a href="/LibraryManager/jsp/searchUserAccountForm.jsp">Search or/and
 
 delete an existing user</a>
+<br />
+<br />
+<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
+Page</a>
+	<br />
+	<br />
+	<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>

@@ -11,8 +11,14 @@
 <a href="/LibraryManager/jsp/registerLoanForm.jsp">Register a new
 loan</a>
 <br />
-<a href="/LibraryManager/jsp/searchLoanForm.jsp">Search or/and
-
-close an existing book</a>
+<a href="/LibraryManager/jsp/searchLoanForm.jsp">Search or/and close
+an existing book</a>
+<br />
+<br />
+<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
+Page</a>
+	<br />
+	<br />
+	<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>

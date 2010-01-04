@@ -12,7 +12,8 @@
 </head>
 <body>
 
-<form:form method="post" name="registerLoanForm" action="/LibraryManager/registerLoan.action">
+<form:form method="post" name="registerLoanForm"
+	action="/LibraryManager/registerLoan.action">
 	<table>
 		<tr>
 			<td>ISBN</td>
@@ -33,5 +34,11 @@
 
 </form:form>
 ${registerLoanException.message}
+<br />
+<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
+Page</a>
+	<br />
+	<br />
+	<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>
