@@ -9,9 +9,11 @@
 <html>
 <head>
 
-<title>Create a new account</title>
+<title>Create a new user account</title>
 </head>
 <body>
+
+<h4>Create a  new user account !</h4>
 
 <form:form method="post" name="createUserAccountForm"
 	action="/LibraryManager/createUserAccount.action">
@@ -53,9 +55,11 @@
 
 </form:form>
 <br />
-	<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home - Page</a>
-	<br />
-	<br />
-	<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+<hr />
+<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
+Page</a>
+<br />
+<br />
+<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>

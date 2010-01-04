@@ -1,12 +1,14 @@
 package librarymanager.app.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import librarymanager.app.LoanManager;
 import librarymanager.app.StockManager;
 import librarymanager.core.Book;
 import librarymanager.core.EmptyStockException;
 import librarymanager.core.Loan;
+import librarymanager.core.LoanAlreadyClosedException;
 import librarymanager.core.LoanAlreadyExistException;
 import librarymanager.core.LoanNotExistException;
 import librarymanager.core.StockNotExistException;
@@ -125,7 +127,10 @@ public class LoanManagerImpl implements LoanManager {
 	}
 
 	@Override
-	public void closeLoan(Loan loan, Date endDate) throws StockNotExistException {
+	public void closeLoan(Loan loan, Date endDate) throws StockNotExistException, LoanAlreadyClosedException {
+		if (loan.getEndDate() != null)
+			throw new LoanAlreadyClosedException();
+		
 		try {
 			loan.setEndDate(endDate);
 			loanDAO.updateLoan(loan);
@@ -134,6 +139,34 @@ public class LoanManagerImpl implements LoanManager {
 					+ exception.getMessage());
 		}
 		stockManager.incrementRemainingStock(loan.getBook(), 1);
+	}
+	
+	@Override
+	public List<Loan> getLoansbyUser(User user) throws Exception {
+		List<Loan> result = null;
+
+		try {
+			result = loanDAO.getLoansbyUser(user);
+		} catch (Exception exception) {
+			System.err.println("Loan#getLoansbyUser() exception: "
+					+ exception.getMessage());
+		}
+
+		return result;
+	}
+	
+	@Override
+	public List<Loan> getAllLoans() throws Exception {
+		List<Loan> result = null;
+
+		try {
+			result = loanDAO.getAllLoans();
+		} catch (Exception exception) {
+			System.err.println("Loan#getAllLoans() exception: "
+					+ exception.getMessage());
+		}
+
+		return result;
 	}
 
 }

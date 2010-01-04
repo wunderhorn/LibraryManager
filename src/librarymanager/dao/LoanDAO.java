@@ -1,5 +1,7 @@
 package librarymanager.dao;
 
+import java.util.List;
+
 import librarymanager.core.Book;
 import librarymanager.core.Loan;
 import librarymanager.core.LoanNotExistException;
@@ -69,4 +71,21 @@ public interface LoanDAO {
 	 *             survient
 	 */
 	public void updateLoan(Loan loan) throws Exception;
+
+	/**
+	 * Recupere tous les prets dans la base de donnees
+	 * 
+	 * @return La liste de tous les prets
+	 */
+	public List<Loan> getAllLoans() throws Exception;
+
+	/**
+	 * Recupere des prets dans la base de donnees
+	 * en fonction d'utilisateur
+	 * 
+	 * @param user
+	 *            L'utilisateur ayant realisé les prets
+	 * @return La liste des prets recherches
+	 */
+	public List<Loan> getLoansbyUser(User user) throws Exception;
 }

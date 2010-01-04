@@ -5,11 +5,14 @@
 <html>
 <head>
 
-<title>Search a new book</title>
+<title>Search a book</title>
 </head>
 <body>
 
-<form:form method="post" name="searchBookForm" action="/LibraryManager/searchBook.action">
+<h4>Search a book</h4>
+
+<form:form method="post" name="searchBookForm"
+	action="/LibraryManager/searchBook.action">
 	<table>
 		<tr>
 			<td>ISBN</td>
@@ -30,10 +33,11 @@
 
 </form:form>
 <br />
+<hr />
 <a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
 Page</a>
-	<br />
-	<br />
-	<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+<br />
+<br />
+<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>

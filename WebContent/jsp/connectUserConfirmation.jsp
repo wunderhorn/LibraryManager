@@ -42,6 +42,7 @@
 %>
 <br />
 <br />
-	<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+<hr />
+<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>

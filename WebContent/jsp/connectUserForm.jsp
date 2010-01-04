@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="librarymanager.ui.ErrorConnectException,librarymanager.core.User"%>
+<%@page
+	import="librarymanager.ui.ErrorConnectException,librarymanager.core.User"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <jsp:useBean id="errorConnectException"
@@ -14,10 +15,12 @@
 </head>
 <body>
 
-<% User user = (User)session.getAttribute("user");
-if( user!= null)
-	user = null; %>
-	
+<%
+	session.invalidate();
+%>
+
+<h4>Connect now !</h4>
+
 <form:form name="connectUserForm" method="post"
 	action="/LibraryManager/connectUser.action">
 	<table>
@@ -38,6 +41,10 @@ if( user!= null)
 	${errorConnectException.message}
 
 </form:form>
+
+<br />
+<br />
+if you haven't got an account, ask the administrator
 
 </body>
 </html>

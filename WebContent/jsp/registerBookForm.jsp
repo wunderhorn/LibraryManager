@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<h4>Register a new book</h4>
+
 <form:form method="post" name="registerBookForm"
 	action="/LibraryManager/registerBook.action">
 	<table>
@@ -40,10 +42,11 @@
 
 </form:form>
 <br />
+<hr />
 <a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
 Page</a>
-	<br />
-	<br />
-	<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+<br />
+<br />
+<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>

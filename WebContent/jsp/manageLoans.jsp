@@ -8,17 +8,20 @@
 </head>
 <body>
 
-<a href="/LibraryManager/jsp/registerLoanForm.jsp">Register a new
-loan</a>
+<h4>Manage loans</h4>
+
+<a href="/LibraryManager/jsp/registerLoanForm.jsp">Search an
+existing book or/and register a new loan</a>
 <br />
-<a href="/LibraryManager/jsp/searchLoanForm.jsp">Search or/and close
-an existing book</a>
+<a href="/LibraryManager/searchLoan.action">Search or/and close an
+existing loan</a>
 <br />
 <br />
+<hr />
 <a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
 Page</a>
-	<br />
-	<br />
-	<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+<br />
+<br />
+<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>

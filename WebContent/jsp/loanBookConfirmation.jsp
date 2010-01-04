@@ -23,10 +23,12 @@
 		<td>${startDate}</td>
 	</tr>
 </table>
-	<br />
-	<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home - Page</a>
-	<br />
-	<br />
-	<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+<br />
+<hr />
+<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
+Page</a>
+<br />
+<br />
+<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>

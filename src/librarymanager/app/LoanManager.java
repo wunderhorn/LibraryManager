@@ -1,10 +1,12 @@
 package librarymanager.app;
 
 import java.util.Date;
+import java.util.List;
 
 import librarymanager.core.Book;
 import librarymanager.core.EmptyStockException;
 import librarymanager.core.Loan;
+import librarymanager.core.LoanAlreadyClosedException;
 import librarymanager.core.LoanAlreadyExistException;
 import librarymanager.core.LoanNotExistException;
 import librarymanager.core.StockNotExistException;
@@ -91,5 +93,21 @@ public interface LoanManager {
 	 * 			   levee si le stock specifie en parametre n'a pas ete
 	 *             enregistre dans la base de donnees
 	 */
-	public void closeLoan(Loan loan, Date endDate) throws StockNotExistException;
+	public void closeLoan(Loan loan, Date endDate) throws StockNotExistException, LoanAlreadyClosedException;
+	
+	/**
+	 * Recupere les prets de tous les utilisateurs
+	 * 
+	 * @return La liste des tous les prets
+	 */
+	public List<Loan> getAllLoans() throws Exception;
+	
+	/**
+	 * Recupere des prets en fonction d'utilisateur
+	 * 
+	 * @param user
+	 *            L'utilisateur ayant realisé les prets
+	 * @return La liste des prets recherches
+	 */
+	public List<Loan> getLoansbyUser(User user) throws Exception;
 }

@@ -10,6 +10,8 @@
 </head>
 <body>
 
+<h4>The results</h4>
+
 <table border="1">
 	<tr>
 		<td>
@@ -38,17 +40,22 @@
 			<td><a
 				href="javascript:document.getElementById('form').submit();"
 				onclick="javascript:document.getElementById('delete').setAttribute('value','${user.login}')">
-			 delete 
-			</a></td>
+			delete </a></td>
 		</tr>
 	</c:forEach>
 
 </table>
 
-<form:form id="form" method="post" action="/LibraryManager/deleteUserAccount.action" >
+<form:form id="form" method="post"
+	action="/LibraryManager/deleteUserAccount.action">
 	<input id="delete" name="deleteLogin" type="hidden" />
 </form:form>
-	<br />
-	<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home - Page</a>
+<br />
+<hr />
+<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
+Page</a>
+<br />
+<br />
+<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>

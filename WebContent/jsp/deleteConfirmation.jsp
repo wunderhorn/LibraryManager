@@ -7,11 +7,13 @@
 <title>Delete - Confirmation</title>
 </head>
 <body>
-	<h4>Deleted OK !</h4>
-	<br />
-	<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home - Page</a>
-	<br />
-	<br />
-	<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+<h4>Deleted OK !</h4>
+<br />
+<hr />
+<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
+Page</a>
+<br />
+<br />
+<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>

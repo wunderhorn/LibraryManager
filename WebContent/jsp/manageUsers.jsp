@@ -8,18 +8,20 @@
 </head>
 <body>
 
+<h4>Manage users</h4>
+
 <a href="/LibraryManager/jsp/createUserAccountForm.jsp">Create a new
 user</a>
 <br />
-<a href="/LibraryManager/jsp/searchUserAccountForm.jsp">Search or/and
-
-delete an existing user</a>
+<a href="/LibraryManager/jsp/searchUserAccountForm.jsp">Search
+or/and delete an existing user</a>
 <br />
 <br />
+<hr />
 <a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
 Page</a>
-	<br />
-	<br />
-	<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+<br />
+<br />
+<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>

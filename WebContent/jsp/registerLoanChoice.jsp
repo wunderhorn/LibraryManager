@@ -10,6 +10,8 @@
 </head>
 <body>
 
+<h4>Choose a book to loan</h4>
+
 <table border="1">
 	<tr>
 		<td>
@@ -49,9 +51,11 @@
 	<input id="loan" name="loanISBN" type="hidden" />
 </form:form>
 <br />
-<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home - Page</a>
-	<br />
-	<br />
-	<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+<hr />
+<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
+Page</a>
+<br />
+<br />
+<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
 </body>
 </html>

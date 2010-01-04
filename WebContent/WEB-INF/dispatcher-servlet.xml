@@ -20,6 +20,8 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 				<prop key="deleteBook.action">deleteBookController</prop>
 				<prop key="registerLoan.action">registerLoanController</prop>
 				<prop key="loanBook.action">loanBookController</prop>
+				<prop key="searchLoan.action">searchLoanController</prop>
+				<prop key="closeLoan.action">closeLoanController</prop>
 			</props>
 		</property>
 	</bean>
@@ -32,6 +34,7 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 				<prop key="librarymanager.ui.ExtremlyBadCreateUserException">createUserAccountForm</prop>
 				<prop key="librarymanager.ui.RegisterBookException">registerBookForm</prop>
 				<prop key="librarymanager.ui.RegisterLoanException">registerLoanForm</prop>
+				<prop key="librarymanager.ui.CloseLoanException">closeLoanConfirmation</prop>
 			</props>
 		</property>
 	</bean>
@@ -113,6 +116,22 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 		<property name="bookManager" ref="bookManager" />
 		<property name="loanManager" ref="loanManager" />
 		<property name="formView" value="loanBookConfirmation" />
+		<property name="commandName" value="loan" />
+		<property name="commandClass" value="librarymanager.core.Loan" />
+	</bean>
+
+	<bean id="searchLoanController" class="librarymanager.ui.SearchLoanController">
+		<property name="loanManager" ref="loanManager" />
+		<property name="formView" value="searchLoan" />
+		<property name="commandName" value="loan" />
+		<property name="commandClass" value="librarymanager.core.Loan" />
+	</bean>
+
+	<bean id="closeLoanController" class="librarymanager.ui.CloseLoanController">
+		<property name="bookManager" ref="bookManager" />
+		<property name="userManager" ref="userManager" />
+		<property name="loanManager" ref="loanManager" />
+		<property name="formView" value="closeLoanConfirmation" />
 		<property name="commandName" value="loan" />
 		<property name="commandClass" value="librarymanager.core.Loan" />
 	</bean>
