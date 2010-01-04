@@ -15,13 +15,14 @@
 	<bean id="bookManager" class="librarymanager.app.impl.BookManagerImpl">
 		<property name="bookDAO" ref="bookDAO" />
 	</bean>
-	
+
 	<bean id="stockManager" class="librarymanager.app.impl.StockManagerImpl">
 		<property name="stockDAO" ref="stockDAO" />
 	</bean>
-	
+
 	<bean id="loanManager" class="librarymanager.app.impl.LoanManagerImpl">
 		<property name="loanDAO" ref="loanDAO" />
+		<property name="stockManager" ref="stockManager" />
 	</bean>
 
 	<bean id="userDAO" class="librarymanager.dao.impl.UserDAOImpl">
@@ -33,12 +34,12 @@
 	<bean id="bookDAO" class="librarymanager.dao.impl.BookDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 	<bean id="stockDAO" class="librarymanager.dao.impl.StockDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-		<bean id="loanDAO" class="librarymanager.dao.impl.LoanDAOImpl">
+
+	<bean id="loanDAO" class="librarymanager.dao.impl.LoanDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
@@ -80,7 +81,7 @@
 			<tx:method name="*" propagation="REQUIRED" read-only="false" />
 		</tx:attributes>
 	</tx:advice>
-	
+
 	<aop:config>
 		<aop:advisor pointcut="execution(* librarymanager.app.StockManager.*(..))"
 			advice-ref="txStockManager" />
@@ -92,7 +93,7 @@
 			<tx:method name="*" propagation="REQUIRED" read-only="false" />
 		</tx:attributes>
 	</tx:advice>
-	
+
 	<aop:config>
 		<aop:advisor pointcut="execution(* librarymanager.app.LoanManager.*(..))"
 			advice-ref="txLoanManager" />

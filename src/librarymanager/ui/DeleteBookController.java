@@ -17,13 +17,20 @@ public class DeleteBookController extends SimpleFormController
 	private BookManager bookManager;
 	private StockManager stockManager;
 
-	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception
-	{	
+	protected Object formBackingObject(HttpServletRequest request)
+	throws Exception {
 		Book book = bookManager.getBook(request.getParameter("deleteISBN"));
 		Stock stock = stockManager.getStock(book);
 		
+		return stock;
+	}
+	
+	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception
+	{
+		Stock stock = (Stock) command;
+		
 		stockManager.removeStock(stock);
-		bookManager.removeBook(book);
+		bookManager.removeBook(stock.getBook());
 		
 		return this.showForm(request, response, errors);
 	}

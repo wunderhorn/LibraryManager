@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Manage books</title>
+<title>Manage loans</title>
 </head>
 <body>
 
-<a href="/LibraryManager/jsp/registerBookForm.jsp">Register a new
-book</a>
+<a href="/LibraryManager/jsp/registerLoanForm.jsp">Register a new
+loan</a>
 <br />
-<a href="/LibraryManager/jsp/searchBookForm.jsp">Search or/and
+<a href="/LibraryManager/jsp/searchLoanForm.jsp">Search or/and
 
-delete an existing book</a>
+close an existing book</a>
 </body>
 </html>

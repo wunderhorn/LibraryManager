@@ -32,7 +32,18 @@ public class RegisterBookController extends SimpleFormController {
 		String isbn = request.getParameter("isbn");
 		String author = request.getParameter("author");
 		String editor = request.getParameter("editor");
-		int totalStock = new Integer(request.getParameter("stock")).intValue();
+		int totalStock = 0;
+		try {
+			totalStock = new Integer(request.getParameter("stock"))
+					.intValue();
+		} catch (NumberFormatException exception) {
+			RegisterBookException registerBookException = new RegisterBookException(
+					"Stock field must be an integer");
+			request
+					.setAttribute("registerBookException",
+							registerBookException);
+			throw registerBookException;
+		}
 
 		if (isbn.isEmpty() || author.isEmpty() || editor.isEmpty()) {
 			RegisterBookException registerBookException = new RegisterBookException(
@@ -70,7 +81,6 @@ public class RegisterBookController extends SimpleFormController {
 			throws Exception {
 		Stock stock = (Stock) command;
 		Book book = stock.getBook();
-
 
 		try {
 			bookManager.addBook(book);

@@ -14,9 +14,17 @@ public class DeleteUserAccountController extends SimpleFormController
 {
 	private UserManager userManager;
 
+	protected Object formBackingObject(HttpServletRequest request)
+	throws Exception {
+		User user = userManager.getUser((String) (request.getParameter("deleteLogin")));
+		
+		return user;
+	}
+	
 	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command, BindException errors) throws Exception
 	{	
-		User user = userManager.getUser((String) (request.getParameter("deleteLogin")));
+		User user = (User) command;
+		
 		userManager.removeUser(user);
 		
 		return this.showForm(request, response, errors);
