@@ -10,10 +10,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="/LibraryManager/css/default.css" />
 <title>Homepage</title>
 </head>
 <body>
+<div id="header"></div>
+<div id="content">
 <%!String userType;%>
 
 <%
@@ -24,25 +26,31 @@
 	if (user instanceof Admin)
 		userType = "Administrator";
 %>
-
+<div id="menu">
 <h4>You are connected as a <%=userType%></h4>
 
-<h5>Please choose your action:</h5>
+<h5>Please choose your action</h5>
 <%
 	out
-			.println("<a href='/LibraryManager/jsp/manageLoans.jsp'>Manage loans</a>");
+			.println("<a href='/LibraryManager/jsp/manageLoans.jsp'>Manage loans</a><br/><br/>");
 
 	if (user instanceof LibraryWorker || user instanceof Admin) {
 		out
-				.println("<a href='/LibraryManager/jsp/manageBooks.jsp'>Manage books</a>");
+				.println("<a href='/LibraryManager/jsp/manageBooks.jsp'>Manage books</a><br/><br/>");
 		if (user instanceof Admin)
 			out
 					.println("<a href='/LibraryManager/jsp/manageUsers.jsp'>Manage users</a>");
 	}
 %>
+</div>
 <br />
 <br />
-<hr />
+</div>
+<div id="footer">
+<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
+Page</a>
+<br />
 <a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+</div>
 </body>
 </html>

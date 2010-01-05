@@ -5,11 +5,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<link rel="stylesheet" type="text/css" href="/LibraryManager/css/default.css" />
 <title>Search a user account - Confirmation</title>
 </head>
 <body>
-
+<div id="header"></div>
+<div id="content">
 <h4>The results</h4>
 
 <table border="1">
@@ -51,11 +52,12 @@
 	<input id="delete" name="deleteISBN" type="hidden" />
 </form:form>
 <br />
-<hr />
+</div>
+<div id="footer">
 <a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
 Page</a>
 <br />
-<br />
 <a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+</div>
 </body>
 </html>

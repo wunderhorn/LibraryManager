@@ -1,17 +1,33 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="librarymanager.core.Customer"%>
+<%@page import="librarymanager.core.LibraryWorker"%>
+<%@page import="librarymanager.core.Admin"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+<jsp:useBean id="user" class="librarymanager.core.User" scope="session" />
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<%@page import="librarymanager.core.LibraryWorker"%><html>
+<head>
+<link rel="stylesheet" type="text/css"
+	href="/LibraryManager/css/default.css" />
 <title>Search a loan</title>
 </head>
 <body>
-
-<h4>Choose a loan</h4>
-
+<div id="header"></div>
+<div id="content">
+<h4>The results</h4>
+<%
+	if (user instanceof Customer)
+		out.println("<h5>You're a user, only your loans appear</h5>");
+	else if (user instanceof LibraryWorker)
+	out.println("<h5>You're a library worker, all loans appear</h5>");
+	else if (user instanceof Admin)
+		out.println("<h5>You're an administrator, all loans appear</h5>");
+%>
 <table border="1">
 	<tr>
 		<td>
@@ -54,13 +70,11 @@
 	action="/LibraryManager/closeLoan.action">
 	<input id="closeBook" name="closeBook" type="hidden" />
 	<input id="closeUser" name="closeUser" type="hidden" />
-</form:form>
+</form:form> <br />
+</div>
+<div id="footer"><a
+	href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home - Page</a>
 <br />
-<hr />
-<a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
-Page</a>
-<br />
-<br />
-<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+<a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a></div>
 </body>
 </html>

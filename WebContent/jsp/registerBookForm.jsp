@@ -7,11 +7,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<link rel="stylesheet" type="text/css" href="/LibraryManager/css/default.css" />
 <title>Register a new book</title>
 </head>
 <body>
-
+<div id="header"></div>
+<div id="content">
 <h4>Register a new book</h4>
 
 <form:form method="post" name="registerBookForm"
@@ -38,15 +39,16 @@
 		</tr>
 	</table>
 
-	${registerBookException.message}
+	<div id="error">${registerBookException.message}</div>
 
 </form:form>
 <br />
-<hr />
+</div>
+<div id="footer">
 <a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
 Page</a>
 <br />
-<br />
 <a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+</div>
 </body>
 </html>

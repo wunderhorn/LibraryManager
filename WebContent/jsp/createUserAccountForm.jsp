@@ -8,11 +8,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<link rel="stylesheet" type="text/css" href="/LibraryManager/css/default.css" />
 <title>Create a new user account</title>
 </head>
 <body>
-
+<div id="header"></div>
+<div id="content">
 <h4>Create a  new user account !</h4>
 
 <form:form method="post" name="createUserAccountForm"
@@ -51,15 +52,16 @@
 		</tr>
 	</table>
 
-	${extremlyBadCreateUserException.message}
+	<div id="error">${extremlyBadCreateUserException.message}</div>
 
 </form:form>
 <br />
-<hr />
+</div>
+<div id="footer">
 <a href="/LibraryManager/jsp/connectUserConfirmation.jsp">Home -
 Page</a>
 <br />
-<br />
 <a href="/LibraryManager/jsp/connectUserForm.jsp">Log out</a>
+</div>
 </body>
 </html>
