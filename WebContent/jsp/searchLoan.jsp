@@ -24,9 +24,11 @@
 	if (user instanceof Customer)
 		out.println("<h5>You're a user, only your loans appear</h5>");
 	else if (user instanceof LibraryWorker)
-	out.println("<h5>You're a library worker, all loans appear</h5>");
+		out
+				.println("<h5>You're a library worker, all loans appear</h5>");
 	else if (user instanceof Admin)
-		out.println("<h5>You're an administrator, all loans appear</h5>");
+		out
+				.println("<h5>You're an administrator, all loans appear</h5>");
 %>
 <table border="1">
 	<tr>
@@ -59,15 +61,18 @@
 			<td>${loan.endDate}</td>
 			<td><a
 				href="javascript:document.getElementById('form').submit();"
-				onclick="javascript:document.getElementById('closeBook').setAttribute('value','${loan.book.isbn}');document.getElementById('closeUser').setAttribute('value','${loan.user.login}')">
+				onclick="javascript:document.getElementById('closeBook').setAttribute('value','${loan.book.isbn}');document.getElementById('closeUser').setAttribute('value','${loan.user.login}');document.getElementById('form').setAttribute('action','/LibraryManager/closeLoan.action')">
 			close </a></td>
+			<td><a
+				href="javascript:document.getElementById('form').submit();"
+				onclick="javascript:document.getElementById('closeBook').setAttribute('value','${loan.book.isbn}');document.getElementById('closeUser').setAttribute('value','${loan.user.login}');document.getElementById('form').setAttribute('action','/LibraryManager/deleteLoan.action')">
+			delete </a></td>
 		</tr>
 	</c:forEach>
 
 </table>
 
-<form:form id="form" method="post"
-	action="/LibraryManager/closeLoan.action">
+<form:form id="form" method="post">
 	<input id="closeBook" name="closeBook" type="hidden" />
 	<input id="closeUser" name="closeUser" type="hidden" />
 </form:form> <br />

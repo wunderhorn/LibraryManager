@@ -1,5 +1,6 @@
 package librarymanager.app.impl;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -72,8 +73,11 @@ public class LoanManagerImpl implements LoanManager {
 		if (!exists(loan))
 			throw new LoanNotExistException("The loan " + loan
 					+ " does not exists");
-
+		
 		try {
+			if (loan.getEndDate() == null)
+				closeLoan(loan, Calendar.getInstance().getTime());
+			
 			loanDAO.removeLoan(loan);
 		} catch (Exception exception) {
 			System.err.println("Loan#removeLoan() exception: "

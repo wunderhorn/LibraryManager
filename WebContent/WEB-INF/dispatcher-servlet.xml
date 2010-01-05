@@ -22,6 +22,7 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 				<prop key="loanBook.action">loanBookController</prop>
 				<prop key="searchLoan.action">searchLoanController</prop>
 				<prop key="closeLoan.action">closeLoanController</prop>
+				<prop key="deleteLoan.action">deleteLoanController</prop>
 			</props>
 		</property>
 	</bean>
@@ -136,6 +137,15 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 		<property name="userManager" ref="userManager" />
 		<property name="loanManager" ref="loanManager" />
 		<property name="formView" value="closeLoanConfirmation" />
+		<property name="commandName" value="loan" />
+		<property name="commandClass" value="librarymanager.core.Loan" />
+	</bean>
+
+	<bean id="deleteLoanController" class="librarymanager.ui.DeleteLoanController">
+		<property name="bookManager" ref="bookManager" />
+		<property name="userManager" ref="userManager" />
+		<property name="loanManager" ref="loanManager" />
+		<property name="formView" value="deleteLoanConfirmation" />
 		<property name="commandName" value="loan" />
 		<property name="commandClass" value="librarymanager.core.Loan" />
 	</bean>
