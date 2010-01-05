@@ -3,12 +3,14 @@ package librarymanager.app.impl;
 import java.util.Hashtable;
 import java.util.List;
 
+import librarymanager.app.LoanManager;
 import librarymanager.app.UserManager;
 import librarymanager.core.Admin;
 import librarymanager.core.Customer;
 import librarymanager.core.LibraryWorker;
 import librarymanager.core.User;
 import librarymanager.core.UserAlreadyExistException;
+import librarymanager.core.UserLoanException;
 import librarymanager.core.UserNotExistException;
 import librarymanager.dao.UserDAO;
 
@@ -20,6 +22,8 @@ import librarymanager.dao.UserDAO;
 public class UserManagerImpl implements UserManager {
 
 	private UserDAO userDAO;
+
+	private LoanManager loanManager;
 
 	public UserManagerImpl() {
 	}
@@ -39,6 +43,23 @@ public class UserManagerImpl implements UserManager {
 	 */
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
+	}
+
+	/**
+	 * @return Le {@link LoanManager}
+	 */
+	public LoanManager getLoanManager() {
+		return loanManager;
+	}
+
+	/**
+	 * Change le {@link LoanManager}
+	 * 
+	 * @param loanManager
+	 *            Le nouveau {@link LoanManager}
+	 */
+	public void setLoanManager(LoanManager loanManager) {
+		this.loanManager = loanManager;
 	}
 
 	@Override
@@ -74,10 +95,13 @@ public class UserManagerImpl implements UserManager {
 	}
 
 	@Override
-	public void removeUser(User user) throws UserNotExistException {
+	public void removeUser(User user) throws UserNotExistException, UserLoanException {
 		if (!exists(user))
 			throw new UserNotExistException("The user " + user
 					+ " does not exists");
+
+			if (loanManager.userIsLoaned(user))
+				throw new UserLoanException();
 
 		try {
 			userDAO.removeUser(user);

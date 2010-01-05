@@ -88,14 +88,14 @@ public class LoanManagerImpl implements LoanManager {
 			throw new LoanAlreadyExistException("The loan " + loan
 					+ " already exists");
 
+		stockManager.decrementRemainingStock(loan.getBook(), 1);
+		
 		try {
 			loanDAO.saveLoan(loan);
 		} catch (Exception exception) {
 			System.err.println("Loan#addLoan() exception: "
 					+ exception.getMessage());
 		}
-		stockManager.decrementRemainingStock(loan.getBook(), 1);
-
 	}
 
 	@Override
@@ -127,9 +127,12 @@ public class LoanManagerImpl implements LoanManager {
 	}
 
 	@Override
-	public void closeLoan(Loan loan, Date endDate) throws StockNotExistException, LoanAlreadyClosedException {
+	public void closeLoan(Loan loan, Date endDate)
+			throws StockNotExistException, LoanAlreadyClosedException {
 		if (loan.getEndDate() != null)
 			throw new LoanAlreadyClosedException();
+
+		stockManager.incrementRemainingStock(loan.getBook(), 1);
 		
 		try {
 			loan.setEndDate(endDate);
@@ -138,11 +141,10 @@ public class LoanManagerImpl implements LoanManager {
 			System.err.println("Loan#addLoan() exception: "
 					+ exception.getMessage());
 		}
-		stockManager.incrementRemainingStock(loan.getBook(), 1);
 	}
-	
+
 	@Override
-	public List<Loan> getLoansbyUser(User user) throws Exception {
+	public List<Loan> getLoansbyUser(User user) {
 		List<Loan> result = null;
 
 		try {
@@ -154,9 +156,23 @@ public class LoanManagerImpl implements LoanManager {
 
 		return result;
 	}
-	
+
 	@Override
-	public List<Loan> getAllLoans() throws Exception {
+	public List<Loan> getLoansbyBook(Book book) {
+		List<Loan> result = null;
+
+		try {
+			result = loanDAO.getLoansbyBook(book);
+		} catch (Exception exception) {
+			System.err.println("Loan#getLoansbyBook() exception: "
+					+ exception.getMessage());
+		}
+
+		return result;
+	}
+
+	@Override
+	public List<Loan> getAllLoans() {
 		List<Loan> result = null;
 
 		try {
@@ -167,6 +183,28 @@ public class LoanManagerImpl implements LoanManager {
 		}
 
 		return result;
+	}
+
+	@Override
+	public boolean bookIsLoaned(Book book) {
+		List<Loan> loanBooks = getLoansbyBook(book);
+
+		for (Loan loan : loanBooks) {
+			if (loan.getBook().getIsbn().equals(book.getIsbn()))
+				return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean userIsLoaned(User user) {
+		List<Loan> loanUsers = getLoansbyUser(user);
+
+		for (Loan loan : loanUsers) {
+			if (loan.getUser().getLogin().equals(user.getLogin()))
+				return true;
+		}
+		return false;
 	}
 
 }

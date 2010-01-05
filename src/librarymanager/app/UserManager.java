@@ -8,6 +8,7 @@ import librarymanager.core.Customer;
 import librarymanager.core.LibraryWorker;
 import librarymanager.core.User;
 import librarymanager.core.UserAlreadyExistException;
+import librarymanager.core.UserLoanException;
 import librarymanager.core.UserNotExistException;
 
 /**
@@ -90,8 +91,10 @@ public interface UserManager {
 	 * @throws UserNotExistException
 	 *             levee si l'utilisateur specifie en parametre n'a pas ete
 	 *             enregistre dans la base de donnees
+	 * @throws UserLoanException
+	 *             levee si l'utilisateur specifie en parametre a un pret en cours       
 	 */
-	public void removeUser(User user) throws UserNotExistException;
+	public void removeUser(User user) throws UserNotExistException, UserLoanException;
 
 	/**
 	 * Recupere un utilisateur dans la base de donnees

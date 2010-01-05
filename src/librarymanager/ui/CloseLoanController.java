@@ -42,7 +42,7 @@ public class CloseLoanController extends SimpleFormController {
 		} catch (LoanAlreadyClosedException exception) {
 			CloseLoanException closeLoanException = new CloseLoanException(
 					"The loan of the book " + loan.getBook().getIsbn()
-							+ " by the user " + loan.getUser().getLogin() + " has already been loaned at " + loan.getEndDate());
+							+ " by the user " + loan.getUser().getLogin() + " has already been closed at " + loan.getEndDate());
 			request.setAttribute("closeLoanException",
 					closeLoanException);
 			throw closeLoanException;

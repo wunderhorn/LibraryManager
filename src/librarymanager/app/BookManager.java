@@ -5,6 +5,7 @@ import java.util.List;
 
 import librarymanager.core.Book;
 import librarymanager.core.BookAlreadyExistException;
+import librarymanager.core.BookLoanException;
 import librarymanager.core.BookNotExistException;
 
 /**
@@ -45,8 +46,10 @@ public interface BookManager {
 	 * @throws BookNotExistException
 	 *             levee si le livre specifie en parametre n'a pas ete
 	 *             enregistre dans la base de donnees
+	 * @throws BookLoanException
+	 * 			   leve si le livre specifie en parametre est en cours de pret
 	 */
-	public void removeBook(Book book) throws BookNotExistException;
+	public void removeBook(Book book) throws BookNotExistException, BookLoanException;
 
 	/**
 	 * Determine si un livre est existant ou non

@@ -76,7 +76,6 @@ public class ConnectUserController extends SimpleFormController {
 			Object command, Errors errors) throws Exception {
 		HttpSession session = request.getSession();
 		session.setAttribute("user", command);
-		session.setAttribute("userManager2", userManager);
 
 		return new HashMap<String, Object>();
 	}

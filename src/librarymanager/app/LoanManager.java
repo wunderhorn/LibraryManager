@@ -100,7 +100,7 @@ public interface LoanManager {
 	 * 
 	 * @return La liste des tous les prets
 	 */
-	public List<Loan> getAllLoans() throws Exception;
+	public List<Loan> getAllLoans();
 	
 	/**
 	 * Recupere des prets en fonction d'utilisateur
@@ -109,5 +109,32 @@ public interface LoanManager {
 	 *            L'utilisateur ayant realisé les prets
 	 * @return La liste des prets recherches
 	 */
-	public List<Loan> getLoansbyUser(User user) throws Exception;
+	public List<Loan> getLoansbyUser(User user);
+	
+	/**
+	 * Recupere des prets en fonction d'un livre
+	 * 
+	 * @param book
+	 *            Le livre concernant les prets
+	 * @return La liste des prets recherches
+	 */
+	public List<Loan> getLoansbyBook(Book book);
+	
+	/**
+	 * Determine si un livre est en cours de pret
+	 * 
+	 * @param book
+	 *            Livre recherhce
+	 * @return <code>true</code> si le livre est en cours de pret, <code>false</code> sinon
+	 */
+	public boolean bookIsLoaned(Book book);
+	
+	/**
+	 * Determine si un utilisateur est en cours de pret
+	 * 
+	 * @param user
+	 *            Utilisateur recherhce
+	 * @return <code>true</code> si l'utilisateur est en cours de pret, <code>false</code> sinon
+	 */
+	public boolean userIsLoaned(User user);
 }

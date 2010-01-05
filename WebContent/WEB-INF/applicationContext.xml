@@ -7,13 +7,13 @@
 	  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<bean id="userManager" class="librarymanager.app.impl.UserManagerImpl">
-		<property name="userDAO">
-			<ref bean="userDAO" />
-		</property>
+		<property name="userDAO" ref="userDAO" />
+		<property name="loanManager" ref="loanManager" />
 	</bean>
 
 	<bean id="bookManager" class="librarymanager.app.impl.BookManagerImpl">
 		<property name="bookDAO" ref="bookDAO" />
+		<property name="loanManager" ref="loanManager" />
 	</bean>
 
 	<bean id="stockManager" class="librarymanager.app.impl.StockManagerImpl">

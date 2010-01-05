@@ -4,8 +4,10 @@ import java.util.Hashtable;
 import java.util.List;
 
 import librarymanager.app.BookManager;
+import librarymanager.app.LoanManager;
 import librarymanager.core.Book;
 import librarymanager.core.BookAlreadyExistException;
+import librarymanager.core.BookLoanException;
 import librarymanager.core.BookNotExistException;
 import librarymanager.dao.BookDAO;
 
@@ -17,6 +19,8 @@ public class BookManagerImpl implements BookManager {
 	/** Gestion de la communication entre les {@link Book} et la base de donnees */
 	private BookDAO bookDAO;
 
+	private LoanManager loanManager;
+	
 	public BookManagerImpl() {
 	}
 
@@ -37,17 +41,37 @@ public class BookManagerImpl implements BookManager {
 		this.bookDAO = bookDAO;
 	}
 
+	/**
+	 * @return Le {@link LoanManager}
+	 */
+	public LoanManager getLoanManager() {
+		return loanManager;
+	}
+
+	/**
+	 * Change le {@link LoanManager}
+	 * 
+	 * @param loanManager
+	 *            Le nouveau {@link LoanManager}
+	 */
+	public void setLoanManager(LoanManager loanManager) {
+		this.loanManager = loanManager;
+	}
+	
 	@Override
 	public Book createBook(String isbn, String author, String editor) {
 		return new Book(isbn, author, editor);
 	}
 
 	@Override
-	public void removeBook(Book book) throws BookNotExistException {
+	public void removeBook(Book book) throws BookNotExistException, BookLoanException {
 		if (!exists(book))
 			throw new BookNotExistException("The book " + book
 					+ " does not exists");
 
+			if (loanManager.bookIsLoaned(book))
+					throw new BookLoanException();
+		
 		try {
 			bookDAO.removeBook(book);
 		} catch (Exception exception) {

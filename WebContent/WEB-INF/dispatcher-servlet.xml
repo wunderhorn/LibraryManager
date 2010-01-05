@@ -35,6 +35,8 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 				<prop key="librarymanager.ui.RegisterBookException">registerBookForm</prop>
 				<prop key="librarymanager.ui.RegisterLoanException">registerLoanForm</prop>
 				<prop key="librarymanager.ui.CloseLoanException">closeLoanConfirmation</prop>
+				<prop key="librarymanager.ui.DeleteBookException">deleteBookConfirmation</prop>
+				<prop key="librarymanager.ui.DeleteUserException">deleteUserConfirmation</prop>
 			</props>
 		</property>
 	</bean>
@@ -68,7 +70,8 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 	<bean id="deleteUserAccountController" class="librarymanager.ui.DeleteUserAccountController">
 		<property name="userManager" ref="userManager" />
-		<property name="formView" value="deleteConfirmation" />
+		<property name="loanManager" ref="loanManager" />
+		<property name="formView" value="deleteUserConfirmation" />
 		<property name="commandName" value="user" />
 		<property name="commandClass" value="librarymanager.core.User" />
 	</bean>
@@ -99,7 +102,8 @@ http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 	<bean id="deleteBookController" class="librarymanager.ui.DeleteBookController">
 		<property name="bookManager" ref="bookManager" />
 		<property name="stockManager" ref="stockManager" />
-		<property name="formView" value="deleteConfirmation" />
+		<property name="loanManager" ref="loanManager" />
+		<property name="formView" value="deleteBookConfirmation" />
 		<property name="commandName" value="stock" />
 		<property name="commandClass" value="librarymanager.core.Stock" />
 	</bean>

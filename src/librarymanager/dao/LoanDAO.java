@@ -88,4 +88,14 @@ public interface LoanDAO {
 	 * @return La liste des prets recherches
 	 */
 	public List<Loan> getLoansbyUser(User user) throws Exception;
+	
+	/**
+	 * Recupere des prets dans la base de donnees
+	 * en fonction d'un livre
+	 * 
+	 * @param book
+	 *            Le livre concernant les prets
+	 * @return La liste des prets recherches
+	 */
+	public List<Loan> getLoansbyBook(Book book) throws Exception;
 }

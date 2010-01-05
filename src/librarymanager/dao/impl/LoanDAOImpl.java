@@ -65,6 +65,18 @@ public class LoanDAOImpl extends HibernateDaoSupport implements LoanDAO {
 	}
 
 	@Override
+	public List<Loan> getLoansbyBook(Book book) throws Exception {
+
+		List<Loan> result = new ArrayList<Loan>();
+
+		for (Object loan : getHibernateTemplate().find(
+				"FROM Loan loan WHERE loan.book.isbn LIKE '" + book.getIsbn() + "'"))
+			result.add((Loan) loan);
+
+		return result;
+	}
+	
+	@Override
 	public List<Loan> getAllLoans() throws Exception {
 
 		List<Loan> result = new ArrayList<Loan>();
